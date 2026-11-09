@@ -1,0 +1,23 @@
+# Build settings for AWS Amplify Hosting. Amplify reads this file automatically.
+version: 1
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - nvm use 22 || nvm install 22
+        - npm ci
+    build:
+      commands:
+        # Amplify only passes environment variables to the running app through this file.
+        - env | grep -E '^(DATABASE_URL|SESSION_SECRET|DEFAULT_USER_PASSWORD|RATE_LIMIT_PER_MINUTE)=' >> .env.production
+        # Apply any new database changes, then build.
+        - npx prisma migrate deploy
+        - npm run build
+  artifacts:
+    baseDirectory: .next
+    files:
+      - '**/*'
+  cache:
+    paths:
+      - node_modules/**/*
+      - .next/cache/**/*

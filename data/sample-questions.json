@@ -1,0 +1,902 @@
+[
+  {
+    "id": "q_001",
+    "text": "What is the capital of India?",
+    "options": ["Mumbai", "New Delhi", "Kolkata", "Chennai"],
+    "correctAnswer": 1,
+    "difficulty": "easy",
+    "category": "General Knowledge",
+    "timeLimit": 30
+  },
+  {
+    "id": "q_002",
+    "text": "How many continents are there in the world?",
+    "options": ["5", "6", "7", "8"],
+    "correctAnswer": 2,
+    "difficulty": "easy",
+    "category": "Geography",
+    "timeLimit": 30
+  },
+  {
+    "id": "q_003",
+    "text": "What is 25 + 37?",
+    "options": ["52", "62", "72", "82"],
+    "correctAnswer": 1,
+    "difficulty": "easy",
+    "category": "Mathematics",
+    "timeLimit": 30
+  },
+  {
+    "id": "q_004",
+    "text": "Which planet is known as the Red Planet?",
+    "options": ["Venus", "Mars", "Jupiter", "Saturn"],
+    "correctAnswer": 1,
+    "difficulty": "easy",
+    "category": "Science",
+    "timeLimit": 30
+  },
+  {
+    "id": "q_005",
+    "text": "What is the largest ocean on Earth?",
+    "options": ["Atlantic Ocean", "Indian Ocean", "Pacific Ocean", "Arctic Ocean"],
+    "correctAnswer": 2,
+    "difficulty": "easy",
+    "category": "Geography",
+    "timeLimit": 30
+  },
+  {
+    "id": "q_006",
+    "text": "Which gas do plants absorb from the atmosphere?",
+    "options": ["Oxygen", "Nitrogen", "Carbon Dioxide", "Hydrogen"],
+    "correctAnswer": 2,
+    "difficulty": "easy",
+    "category": "Science",
+    "timeLimit": 30
+  },
+  {
+    "id": "q_007",
+    "text": "What is the square root of 144?",
+    "options": ["10", "11", "12", "13"],
+    "correctAnswer": 2,
+    "difficulty": "easy",
+    "category": "Mathematics",
+    "timeLimit": 30
+  },
+  {
+    "id": "q_008",
+    "text": "Which animal is known as the 'King of the Jungle'?",
+    "options": ["Tiger", "Lion", "Elephant", "Bear"],
+    "correctAnswer": 1,
+    "difficulty": "easy",
+    "category": "General Knowledge",
+    "timeLimit": 30
+  },
+  {
+    "id": "q_009",
+    "text": "What is the chemical symbol for water?",
+    "options": ["H2O", "CO2", "NaCl", "HCl"],
+    "correctAnswer": 0,
+    "difficulty": "easy",
+    "category": "Science",
+    "timeLimit": 30
+  },
+  {
+    "id": "q_010",
+    "text": "How many days are there in a leap year?",
+    "options": ["365", "366", "367", "364"],
+    "correctAnswer": 1,
+    "difficulty": "easy",
+    "category": "General Knowledge",
+    "timeLimit": 30
+  },
+  {
+    "id": "q_011",
+    "text": "What is 15 × 8?",
+    "options": ["100", "110", "120", "130"],
+    "correctAnswer": 2,
+    "difficulty": "easy",
+    "category": "Mathematics",
+    "timeLimit": 30
+  },
+  {
+    "id": "q_012",
+    "text": "Which color is produced by mixing red and blue?",
+    "options": ["Green", "Orange", "Purple", "Brown"],
+    "correctAnswer": 2,
+    "difficulty": "easy",
+    "category": "General Knowledge",
+    "timeLimit": 30
+  },
+  {
+    "id": "q_013",
+    "text": "What is the freezing point of water in Celsius?",
+    "options": ["0°C", "32°C", "100°C", "-1°C"],
+    "correctAnswer": 0,
+    "difficulty": "easy",
+    "category": "Science",
+    "timeLimit": 30
+  },
+  {
+    "id": "q_014",
+    "text": "Which country has the largest population?",
+    "options": ["USA", "India", "China", "Indonesia"],
+    "correctAnswer": 1,
+    "difficulty": "easy",
+    "category": "Geography",
+    "timeLimit": 30
+  },
+  {
+    "id": "q_015",
+    "text": "What is 100 ÷ 4?",
+    "options": ["20", "25", "30", "35"],
+    "correctAnswer": 1,
+    "difficulty": "easy",
+    "category": "Mathematics",
+    "timeLimit": 30
+  },
+  {
+    "id": "q_016",
+    "text": "Which is the tallest mountain in the world?",
+    "options": ["K2", "Mount Everest", "Kangchenjunga", "Lhotse"],
+    "correctAnswer": 1,
+    "difficulty": "easy",
+    "category": "Geography",
+    "timeLimit": 30
+  },
+  {
+    "id": "q_017",
+    "text": "What is the national sport of India?",
+    "options": ["Cricket", "Hockey", "Kabaddi", "Football"],
+    "correctAnswer": 1,
+    "difficulty": "easy",
+    "category": "General Knowledge",
+    "timeLimit": 30
+  },
+  {
+    "id": "q_018",
+    "text": "Which planet is closest to the Sun?",
+    "options": ["Venus", "Mercury", "Earth", "Mars"],
+    "correctAnswer": 1,
+    "difficulty": "easy",
+    "category": "Science",
+    "timeLimit": 30
+  },
+  {
+    "id": "q_019",
+    "text": "What is 9 × 9?",
+    "options": ["72", "81", "90", "99"],
+    "correctAnswer": 1,
+    "difficulty": "easy",
+    "category": "Mathematics",
+    "timeLimit": 30
+  },
+  {
+    "id": "q_020",
+    "text": "How many letters are in the English alphabet?",
+    "options": ["24", "25", "26", "27"],
+    "correctAnswer": 2,
+    "difficulty": "easy",
+    "category": "General Knowledge",
+    "timeLimit": 30
+  },
+  {
+    "id": "q_021",
+    "text": "If a train travels at 60 km/h for 3 hours, how far does it travel?",
+    "options": ["120 km", "150 km", "180 km", "200 km"],
+    "correctAnswer": 2,
+    "difficulty": "medium",
+    "category": "Mathematics",
+    "timeLimit": 45
+  },
+  {
+    "id": "q_022",
+    "text": "Which is the largest organ in the human body?",
+    "options": ["Liver", "Heart", "Skin", "Brain"],
+    "correctAnswer": 2,
+    "difficulty": "medium",
+    "category": "Science",
+    "timeLimit": 45
+  },
+  {
+    "id": "q_023",
+    "text": "What is the compound interest on ₹1000 at 10% per annum for 2 years?",
+    "options": ["₹200", "₹210", "₹220", "₹230"],
+    "correctAnswer": 1,
+    "difficulty": "medium",
+    "category": "Mathematics",
+    "timeLimit": 45
+  },
+  {
+    "id": "q_024",
+    "text": "Which is the longest river in the world?",
+    "options": ["Amazon", "Nile", "Yangtze", "Mississippi"],
+    "correctAnswer": 1,
+    "difficulty": "medium",
+    "category": "Geography",
+    "timeLimit": 45
+  },
+  {
+    "id": "q_025",
+    "text": "What is the next number in sequence: 2, 6, 12, 20, 30, ?",
+    "options": ["38", "40", "42", "44"],
+    "correctAnswer": 2,
+    "difficulty": "medium",
+    "category": "Mathematics",
+    "timeLimit": 45
+  },
+  {
+    "id": "q_026",
+    "text": "Which element is most abundant in Earth's crust?",
+    "options": ["Iron", "Oxygen", "Silicon", "Aluminum"],
+    "correctAnswer": 1,
+    "difficulty": "medium",
+    "category": "Science",
+    "timeLimit": 45
+  },
+  {
+    "id": "q_027",
+    "text": "What is the smallest prime number greater than 10?",
+    "options": ["11", "13", "17", "19"],
+    "correctAnswer": 0,
+    "difficulty": "medium",
+    "category": "Mathematics",
+    "timeLimit": 45
+  },
+  {
+    "id": "q_028",
+    "text": "Which country invented the game of chess?",
+    "options": ["China", "India", "Persia", "Egypt"],
+    "correctAnswer": 1,
+    "difficulty": "medium",
+    "category": "History",
+    "timeLimit": 45
+  },
+  {
+    "id": "q_029",
+    "text": "If 'A' = 1, 'B' = 2, what is the sum of 'C', 'A', and 'T'?",
+    "options": ["24", "23", "21", "20"],
+    "correctAnswer": 0,
+    "difficulty": "medium",
+    "category": "Logical Reasoning",
+    "timeLimit": 45
+  },
+  {
+    "id": "q_030",
+    "text": "Which law describes the relationship between pressure and volume of a gas at constant temperature?",
+    "options": ["Charles's Law", "Boyle's Law", "Gay-Lussac's Law", "Avogadro's Law"],
+    "correctAnswer": 1,
+    "difficulty": "medium",
+    "category": "Science",
+    "timeLimit": 45
+  },
+  {
+    "id": "q_031",
+    "text": "A shopkeeper gives a 20% discount on a ₹500 item. What is the final price?",
+    "options": ["₹350", "₹380", "₹400", "₹420"],
+    "correctAnswer": 2,
+    "difficulty": "medium",
+    "category": "Mathematics",
+    "timeLimit": 45
+  },
+  {
+    "id": "q_032",
+    "text": "Which is the smallest island nation in the world?",
+    "options": ["Maldives", "Singapore", "Bahrain", "Nauru"],
+    "correctAnswer": 3,
+    "difficulty": "medium",
+    "category": "Geography",
+    "timeLimit": 45
+  },
+  {
+    "id": "q_033",
+    "text": "How many edges does a cube have?",
+    "options": ["6", "8", "10", "12"],
+    "correctAnswer": 3,
+    "difficulty": "medium",
+    "category": "Mathematics",
+    "timeLimit": 45
+  },
+  {
+    "id": "q_034",
+    "text": "What is the pH of pure water?",
+    "options": ["5", "6", "7", "8"],
+    "correctAnswer": 2,
+    "difficulty": "medium",
+    "category": "Science",
+    "timeLimit": 45
+  },
+  {
+    "id": "q_035",
+    "text": "Which country was the first to land a spacecraft on Mars?",
+    "options": ["USA", "Russia", "India", "China"],
+    "correctAnswer": 0,
+    "difficulty": "medium",
+    "category": "Science",
+    "timeLimit": 45
+  },
+  {
+    "id": "q_036",
+    "text": "What is the value of 'x' if 3x + 5 = 20?",
+    "options": ["3", "4", "5", "6"],
+    "correctAnswer": 2,
+    "difficulty": "medium",
+    "category": "Mathematics",
+    "timeLimit": 45
+  },
+  {
+    "id": "q_037",
+    "text": "What is the language with the most native speakers?",
+    "options": ["English", "Mandarin Chinese", "Hindi", "Spanish"],
+    "correctAnswer": 1,
+    "difficulty": "medium",
+    "category": "General Knowledge",
+    "timeLimit": 45
+  },
+  {
+    "id": "q_038",
+    "text": "Which ancient civilization built Machu Picchu?",
+    "options": ["Aztec", "Mayan", "Incan", "Roman"],
+    "correctAnswer": 2,
+    "difficulty": "medium",
+    "category": "History",
+    "timeLimit": 45
+  },
+  {
+    "id": "q_039",
+    "text": "If the average of 5 numbers is 10, and 4 numbers are 8, 12, 9, 11, what is the 5th number?",
+    "options": ["8", "9", "10", "11"],
+    "correctAnswer": 2,
+    "difficulty": "medium",
+    "category": "Mathematics",
+    "timeLimit": 45
+  },
+  {
+    "id": "q_040",
+    "text": "Which is the fastest bird in the world?",
+    "options": ["Eagle", "Falcon", "Swift", "Hawk"],
+    "correctAnswer": 1,
+    "difficulty": "medium",
+    "category": "General Knowledge",
+    "timeLimit": 45
+  },
+  {
+    "id": "q_041",
+    "text": "What is the derivative of f(x) = x³ + 2x² - 5x + 3?",
+    "options": ["3x² + 4x - 5", "3x² + 2x - 5", "2x² + 4x - 5", "x² + 4x - 5"],
+    "correctAnswer": 0,
+    "difficulty": "hard",
+    "category": "Mathematics",
+    "timeLimit": 60
+  },
+  {
+    "id": "q_042",
+    "text": "Which of the following is NOT a fundamental force in physics?",
+    "options": ["Gravity", "Electromagnetism", "Nuclear Force", "Centrifugal Force"],
+    "correctAnswer": 3,
+    "difficulty": "hard",
+    "category": "Science",
+    "timeLimit": 60
+  },
+  {
+    "id": "q_043",
+    "text": "What is the probability of drawing two aces from a standard deck of 52 cards without replacement?",
+    "options": ["1/221", "1/169", "1/52", "1/13"],
+    "correctAnswer": 0,
+    "difficulty": "hard",
+    "category": "Mathematics",
+    "timeLimit": 60
+  },
+  {
+    "id": "q_044",
+    "text": "Which philosopher is known as the father of Western philosophy?",
+    "options": ["Plato", "Aristotle", "Socrates", "Pythagoras"],
+    "correctAnswer": 2,
+    "difficulty": "hard",
+    "category": "History",
+    "timeLimit": 60
+  },
+  {
+    "id": "q_045",
+    "text": "In which year did the United Nations officially adopt the Universal Declaration of Human Rights?",
+    "options": ["1945", "1948", "1950", "1952"],
+    "correctAnswer": 1,
+    "difficulty": "hard",
+    "category": "History",
+    "timeLimit": 60
+  },
+  {
+    "id": "q_046",
+    "text": "What is the Schrodinger equation used to describe?",
+    "options": ["Electromagnetic Waves", "Quantum State Evolution", "Gravity Waves", "Thermodynamic Systems"],
+    "correctAnswer": 1,
+    "difficulty": "hard",
+    "category": "Science",
+    "timeLimit": 60
+  },
+  {
+    "id": "q_047",
+    "text": "What is the sum of all positive integers from 1 to 100?",
+    "options": ["4950", "5000", "5050", "5100"],
+    "correctAnswer": 2,
+    "difficulty": "hard",
+    "category": "Mathematics",
+    "timeLimit": 60
+  },
+  {
+    "id": "q_048",
+    "text": "Which is the most abundant gas in the Earth's atmosphere?",
+    "options": ["Oxygen", "Carbon Dioxide", "Nitrogen", "Argon"],
+    "correctAnswer": 2,
+    "difficulty": "hard",
+    "category": "Science",
+    "timeLimit": 60
+  },
+  {
+    "id": "q_049",
+    "text": "What is the value of 2^10?",
+    "options": ["512", "1024", "2048", "4096"],
+    "correctAnswer": 1,
+    "difficulty": "hard",
+    "category": "Mathematics",
+    "timeLimit": 60
+  },
+  {
+    "id": "q_050",
+    "text": "Which country has the highest density of nuclear weapons?",
+    "options": ["USA", "Russia", "China", "India"],
+    "correctAnswer": 1,
+    "difficulty": "hard",
+    "category": "General Knowledge",
+    "timeLimit": 60
+  },
+  {
+    "id": "q_101",
+    "text": "भारत की राजधानी क्या है?",
+    "options": ["मुंबई", "कोलकाता", "नई दिल्ली", "चेन्नई"],
+    "correctAnswer": 2,
+    "difficulty": "easy",
+    "category": "General Knowledge",
+    "timeLimit": 30
+  },
+  {
+    "id": "q_102",
+    "text": "विश्व का सबसे ऊँचा पर्वत कौन सा है?",
+    "options": ["के2", "माउंट एवरेस्ट", "कंचनजंगा", "लहोत्से"],
+    "correctAnswer": 1,
+    "difficulty": "easy",
+    "category": "General Knowledge",
+    "timeLimit": 30
+  },
+  {
+    "id": "q_103",
+    "text": "हमारे सौरमंडल का सबसे बड़ा ग्रह कौन सा है?",
+    "options": ["मंगल", "शनि", "पृथ्वी", "बृहस्पति"],
+    "correctAnswer": 3,
+    "difficulty": "easy",
+    "category": "Science",
+    "timeLimit": 30
+  },
+  {
+    "id": "q_104",
+    "text": "मानव शरीर में कुल कितनी हड्डियाँ होती हैं?",
+    "options": ["206", "300", "108", "210"],
+    "correctAnswer": 0,
+    "difficulty": "easy",
+    "category": "Science",
+    "timeLimit": 30
+  },
+  {
+    "id": "q_105",
+    "text": "किस रंग को शांति का प्रतीक माना जाता है?",
+    "options": ["लाल", "सफेद", "पीला", "नीला"],
+    "correctAnswer": 1,
+    "difficulty": "easy",
+    "category": "General Knowledge",
+    "timeLimit": 30
+  },
+  {
+    "id": "q_106",
+    "text": "क्षेत्रफल की दृष्टि से भारत का सबसे बड़ा राज्य कौन सा है?",
+    "options": ["उत्तर प्रदेश", "मध्य प्रदेश", "राजस्थान", "महाराष्ट्र"],
+    "correctAnswer": 2,
+    "difficulty": "easy",
+    "category": "Geography",
+    "timeLimit": 30
+  },
+  {
+    "id": "q_107",
+    "text": "भारत का राष्ट्रीय पशु कौन सा है?",
+    "options": ["शेर", "बाघ", "हाथी", "चीता"],
+    "correctAnswer": 1,
+    "difficulty": "easy",
+    "category": "General Knowledge",
+    "timeLimit": 30
+  },
+  {
+    "id": "q_108",
+    "text": "मसालों का बगीचा किस राज्य को कहा जाता है?",
+    "options": ["तमिलनाडु", "केरल", "कर्नाटक", "असम"],
+    "correctAnswer": 1,
+    "difficulty": "easy",
+    "category": "Geography",
+    "timeLimit": 30
+  },
+  {
+    "id": "q_109",
+    "text": "कंप्यूटर का जनक किसे माना जाता है?",
+    "options": ["बिल गेट्स", "चार्ल्स बैबेज", "थॉमस एडिसन", "अल्बर्ट आइंस्टीन"],
+    "correctAnswer": 1,
+    "difficulty": "easy",
+    "category": "Technology",
+    "timeLimit": 30
+  },
+  {
+    "id": "q_110",
+    "text": "पैन का पूर्ण रूप (Full Form) क्या है?",
+    "options": ["Permanent Account Number", "Personal Account Number", "Permanent Address Number", "Public Access Network"],
+    "correctAnswer": 0,
+    "difficulty": "medium",
+    "category": "General Knowledge",
+    "timeLimit": 45
+  },
+  {
+    "id": "q_111",
+    "text": "किस ग्रह को 'लाल ग्रह' भी कहा जाता है?",
+    "options": ["बुध", "शुक्र", "मंगल", "शनि"],
+    "correctAnswer": 2,
+    "difficulty": "easy",
+    "category": "Science",
+    "timeLimit": 30
+  },
+  {
+    "id": "q_112",
+    "text": "सिक्खों के प्रथम गुरु कौन थे?",
+    "options": ["गुरु अर्जुन देव", "गुरु गोबिंद सिंह", "गुरु नानक देव", "गुरु तेग बहादुर"],
+    "correctAnswer": 2,
+    "difficulty": "easy",
+    "category": "History",
+    "timeLimit": 30
+  },
+  {
+    "id": "q_113",
+    "text": "भारतीय संविधान का जनक किसे कहा जाता है?",
+    "options": ["महात्मा गांधी", "डॉ. बी.आर. अंबेडकर", "जवाहरलाल नेहरू", "डॉ. राजेंद्र प्रसाद"],
+    "correctAnswer": 1,
+    "difficulty": "easy",
+    "category": "Civics",
+    "timeLimit": 30
+  },
+  {
+    "id": "q_114",
+    "text": "भारत की सबसे लंबी नदी कौन सी है?",
+    "options": ["यमुना", "गोदावरी", "ब्रह्मपुत्र", "गंगा"],
+    "correctAnswer": 3,
+    "difficulty": "easy",
+    "category": "Geography",
+    "timeLimit": 30
+  },
+  {
+    "id": "q_115",
+    "text": "गिर राष्ट्रीय उद्यान किस राज्य में स्थित है?",
+    "options": ["राजस्थान", "गुजरात", "मध्य प्रदेश", "उत्तराखंड"],
+    "correctAnswer": 1,
+    "difficulty": "medium",
+    "category": "Geography",
+    "timeLimit": 45
+  },
+  {
+    "id": "q_116",
+    "text": "विटामिन सी का सबसे समृद्ध स्रोत क्या है?",
+    "options": ["दूध", "सेब", "आँवला", "केला"],
+    "correctAnswer": 2,
+    "difficulty": "easy",
+    "category": "Science",
+    "timeLimit": 30
+  },
+  {
+    "id": "q_117",
+    "text": "नोबेल पुरस्कार जीतने वाले पहले भारतीय कौन थे?",
+    "options": ["सी.वी. रमन", "रवींद्रनाथ टैगोर", "मदर टेरेसा", "अमर्त्य सेन"],
+    "correctAnswer": 1,
+    "difficulty": "medium",
+    "category": "General Knowledge",
+    "timeLimit": 45
+  },
+  {
+    "id": "q_118",
+    "text": "जापान की मुद्रा का नाम क्या है?",
+    "options": ["डॉलर", "येन", "यूरो", "रुबल"],
+    "correctAnswer": 1,
+    "difficulty": "easy",
+    "category": "General Knowledge",
+    "timeLimit": 30
+  },
+  {
+    "id": "q_119",
+    "text": "पानी का रासायनिक सूत्र क्या है?",
+    "options": ["CO2", "H2O", "O2", "NaCl"],
+    "correctAnswer": 1,
+    "difficulty": "easy",
+    "category": "Science",
+    "timeLimit": 30
+  },
+  {
+    "id": "q_120",
+    "text": "कथकली किस राज्य का प्रसिद्ध शास्त्रीय नृत्य है?",
+    "options": ["तमिलनाडु", "आंध्र प्रदेश", "केरल", "ओडिशा"],
+    "correctAnswer": 2,
+    "difficulty": "medium",
+    "category": "Art and Culture",
+    "timeLimit": 45
+  },
+  {
+    "id": "q_121",
+    "text": "सूर्य के प्रकाश को पृथ्वी तक पहुँचने में कितना समय लगता है?",
+    "options": ["लगभग 2 मिनट", "लगभग 5 मिनट", "लगभग 8 मिनट", "लगभग 12 मिनट"],
+    "correctAnswer": 2,
+    "difficulty": "medium",
+    "category": "Science",
+    "timeLimit": 45
+  },
+  {
+    "id": "q_122",
+    "text": "वायुमंडल में सबसे प्रचुर मात्रा में पाई जाने वाली गैस कौन सी है?",
+    "options": ["ऑक्सीजन", "नाइट्रोजन", "कार्बन डाइऑक्साइड", "हाइड्रोजन"],
+    "correctAnswer": 1,
+    "difficulty": "easy",
+    "category": "Science",
+    "timeLimit": 30
+  },
+  {
+    "id": "q_123",
+    "text": "हार्ट अटैक का मुख्य कारण क्या होता है?",
+    "options": ["ब्लड शुगर", "कोलेस्ट्रॉल", "विटामिन की कमी", "लिवर फेलियर"],
+    "correctAnswer": 1,
+    "difficulty": "medium",
+    "category": "Science",
+    "timeLimit": 45
+  },
+  {
+    "id": "q_124",
+    "text": "भारत में 'सिलिकॉन वैली' किस शहर को कहा जाता है?",
+    "options": ["हैदराबाद", "पुणे", "बेंगलुरु", "चेन्नई"],
+    "correctAnswer": 2,
+    "difficulty": "easy",
+    "category": "General Knowledge",
+    "timeLimit": 30
+  },
+  {
+    "id": "q_125",
+    "text": "ऑस्कर पुरस्कार किस क्षेत्र में उत्कृष्ट योगदान के लिए दिया जाता है?",
+    "options": ["साहित्य", "सिनेमा", "विज्ञान", "खेल"],
+    "correctAnswer": 1,
+    "difficulty": "easy",
+    "category": "Entertainment",
+    "timeLimit": 30
+  },
+  {
+    "id": "q_126",
+    "text": "हड़प्पा सभ्यता की खोज किस वर्ष हुई थी?",
+    "options": ["1921", "1935", "1942", "1911"],
+    "correctAnswer": 0,
+    "difficulty": "hard",
+    "category": "History",
+    "timeLimit": 60
+  },
+  {
+    "id": "q_127",
+    "text": "जीरो (0) का आविष्कार किस देश में हुआ था?",
+    "options": ["यूनान", "मिस्र", "चीन", "भारत"],
+    "correctAnswer": 3,
+    "difficulty": "easy",
+    "category": "History",
+    "timeLimit": 30
+  },
+  {
+    "id": "q_128",
+    "text": "विश्व का सबसे बड़ा मरुस्थल (Desert) कौन सा है?",
+    "options": ["थार", "गोबी", "सहारा", "कालाहारी"],
+    "correctAnswer": 2,
+    "difficulty": "easy",
+    "category": "Geography",
+    "timeLimit": 30
+  },
+  {
+    "id": "q_129",
+    "text": "भारत का सबसे पहला बैंक कौन सा था?",
+    "options": ["बैंक ऑफ हिंदुस्तान", "भारतीय स्टेट बैंक", "पंजाब नेशनल बैंक", "इलाहाबाद बैंक"],
+    "correctAnswer": 0,
+    "difficulty": "hard",
+    "category": "History",
+    "timeLimit": 60
+  },
+  {
+    "id": "q_130",
+    "text": "पेनिसिलिन की खोज किसने की थी?",
+    "options": ["लुई पाश्चर", "अलेक्जेंडर फ्लेमिंग", "एडवर्ड जेनर", "रॉबर्ट कोच"],
+    "correctAnswer": 1,
+    "difficulty": "medium",
+    "category": "Science",
+    "timeLimit": 45
+  },
+  {
+    "id": "q_131",
+    "text": "अंतरिक्ष में जाने वाले पहले भारतीय कौन थे?",
+    "options": ["रविश मल्होत्रा", "राकेश शर्मा", "कल्पना चावला", "सुनीता विलियम्स"],
+    "correctAnswer": 1,
+    "difficulty": "easy",
+    "category": "General Knowledge",
+    "timeLimit": 30
+  },
+  {
+    "id": "q_132",
+    "text": "आनंदमठ पुस्तक के लेखक कौन हैं?",
+    "options": ["रवींद्रनाथ टैगोर", "बंकिम चंद्र चट्टोपाध्याय", "शरद चंद्र चट्टोपाध्याय", "मुंशी प्रेमचंद"],
+    "correctAnswer": 1,
+    "difficulty": "medium",
+    "category": "Literature",
+    "timeLimit": 45
+  },
+  {
+    "id": "q_133",
+    "text": "गांधी जी ने भारत में अपना पहला सत्याग्रह कहाँ शुरू किया था?",
+    "options": ["साबरमती", "खेड़ा", "चंपारण", "बारडोली"],
+    "correctAnswer": 2,
+    "difficulty": "medium",
+    "category": "History",
+    "timeLimit": 45
+  },
+  {
+    "id": "q_134",
+    "text": "ताजमहल किस नदी के तट पर स्थित है?",
+    "options": ["गंगा", "यमुना", "सरस्वती", "नर्मदा"],
+    "correctAnswer": 1,
+    "difficulty": "easy",
+    "category": "General Knowledge",
+    "timeLimit": 30
+  },
+  {
+    "id": "q_135",
+    "text": "मानव शरीर की सबसे बड़ी ग्रंथि (Gland) कौन सी है?",
+    "options": ["थायराइड", "पीयूष ग्रंथि", "लिवर (यकृत)", "अग्न्याशय"],
+    "correctAnswer": 2,
+    "difficulty": "medium",
+    "category": "Science",
+    "timeLimit": 45
+  },
+  {
+    "id": "q_136",
+    "text": "बिहू किस राज्य का प्रसिद्ध लोक नृत्य है?",
+    "options": ["असम", "नागालैंड", "मिजोरम", "मेघालय"],
+    "correctAnswer": 0,
+    "difficulty": "easy",
+    "category": "Art and Culture",
+    "timeLimit": 30
+  },
+  {
+    "id": "q_137",
+    "text": "पानीपत की पहली लड़ाई किस वर्ष लड़ी गई थी?",
+    "options": ["1526", "1556", "1761", "1191"],
+    "correctAnswer": 0,
+    "difficulty": "medium",
+    "category": "History",
+    "timeLimit": 45
+  },
+  {
+    "id": "q_138",
+    "text": "भारत का एकमात्र सक्रिय ज्वालामुखी कहाँ स्थित है?",
+    "options": ["लक्षद्वीप", "बैरन द्वीप", "अमीनदीवी", "मिनिकॉय"],
+    "correctAnswer": 1,
+    "difficulty": "hard",
+    "category": "Geography",
+    "timeLimit": 60
+  },
+  {
+    "id": "q_139",
+    "text": "सौरमंडल का सबसे ठंडा ग्रह कौन सा है?",
+    "options": ["बृहस्पति", "शनि", "वरुण (नेप्च्यून)", "अरुण (युरेनस)"],
+    "correctAnswer": 2,
+    "difficulty": "medium",
+    "category": "Science",
+    "timeLimit": 45
+  },
+  {
+    "id": "q_140",
+    "text": "कंप्यूटर साक्षरता दिवस कब मनाया जाता है?",
+    "options": ["5 दिसंबर", "2 दिसंबर", "10 नवंबर", "15 जनवरी"],
+    "correctAnswer": 1,
+    "difficulty": "hard",
+    "category": "General Knowledge",
+    "timeLimit": 60
+  },
+  {
+    "id": "q_141",
+    "text": "विश्व पर्यावरण दिवस कब मनाया जाता है?",
+    "options": ["5 जून", "22 अप्रैल", "11 जुलाई", "28 फरवरी"],
+    "correctAnswer": 0,
+    "difficulty": "easy",
+    "category": "General Knowledge",
+    "timeLimit": 30
+  },
+  {
+    "id": "q_142",
+    "text": "लोहे को जंग से बचाने के लिए उस पर जस्ते की परत चढ़ाने की प्रक्रिया को क्या कहते हैं?",
+    "options": ["तपानुशीतन", "गैल्वनाइजेशन", "मिश्रण", "विद्युत अपघटन"],
+    "correctAnswer": 1,
+    "difficulty": "medium",
+    "category": "Science",
+    "timeLimit": 45
+  },
+  {
+    "id": "q_143",
+    "text": "सुभाष चंद्र बोस ने आजाद हिंद फौज की स्थापना कहाँ की थी?",
+    "options": ["टोक्यो", "सिंगापुर", "बर्लिन", "रंगून"],
+    "correctAnswer": 1,
+    "difficulty": "medium",
+    "category": "History",
+    "timeLimit": 45
+  },
+  {
+    "id": "q_144",
+    "text": "चेचक के टीके का आविष्कार किसने किया था?",
+    "options": ["लुई पाश्चर", "जोनास साल्क", "एडवर्ड जेनर", "अलेक्जेंडर फ्लेमिंग"],
+    "correctAnswer": 2,
+    "difficulty": "hard",
+    "category": "Science",
+    "timeLimit": 60
+  },
+  {
+    "id": "q_145",
+    "text": "कथक किस राज्य का प्रमुख शास्त्रीय नृत्य है?",
+    "options": ["उत्तर प्रदेश", "तमिलनाडु", "केरल", "मणिपुर"],
+    "correctAnswer": 0,
+    "difficulty": "medium",
+    "category": "Art and Culture",
+    "timeLimit": 45
+  },
+  {
+    "id": "q_146",
+    "text": "फलों को पकाने के लिए किस गैस का उपयोग किया जाता है?",
+    "options": ["मीथेन", "एथिलीन", "एथेन", "ब्यूटेन"],
+    "correctAnswer": 1,
+    "difficulty": "medium",
+    "category": "Science",
+    "timeLimit": 45
+  },
+  {
+    "id": "q_147",
+    "text": "भारत का राष्ट्रीय खेल किसे माना जाता है?",
+    "options": ["क्रिकेट", "कबड्डी", "हॉकी", "फुटबॉल"],
+    "correctAnswer": 2,
+    "difficulty": "easy",
+    "category": "Sports",
+    "timeLimit": 30
+  },
+  {
+    "id": "q_148",
+    "text": "भारत के किस राज्य की तटरेखा सबसे लंबी है?",
+    "options": ["महाराष्ट्र", "तमिलनाडु", "आंध्र प्रदेश", "गुजरात"],
+    "correctAnswer": 3,
+    "difficulty": "medium",
+    "category": "Geography",
+    "timeLimit": 45
+  },
+  {
+    "id": "q_149",
+    "text": "सत्यमेव जयते कहाँ से लिया गया है?",
+    "options": ["ऋग्वेद", "मुण्डकोपनिषद्", "रामायण", "महाभारत"],
+    "correctAnswer": 1,
+    "difficulty": "medium",
+    "category": "History",
+    "timeLimit": 45
+  },
+  {
+    "id": "q_150",
+    "text": "एक्स-रे (X-Ray) की खोज किसने की थी?",
+    "options": ["थॉमस एडिसन", "विल्हेम रॉन्टगन", "मैरी क्यूरी", "निकोला टेस्ला"],
+    "correctAnswer": 1,
+    "difficulty": "hard",
+    "category": "Science",
+    "timeLimit": 60
+  }
+]

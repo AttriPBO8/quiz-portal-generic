@@ -1,0 +1,226 @@
+// Database design for the Online Quiz Portal.
+// Change this file, then run `npm run db:migrate` to update the database.
+
+generator client {
+  provider      = "prisma-client-js"
+  // "native" for your laptop, "rhel-openssl-3.0.x" for AWS Amplify.
+  binaryTargets = ["native", "rhel-openssl-3.0.x"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum AdminRole {
+  SUPER_ADMIN
+  LOCAL_ADMIN
+}
+
+enum RoleType {
+  TEACHER
+  WORKER
+  HELPER
+  DUMMY
+}
+
+enum Difficulty {
+  EASY
+  MEDIUM
+  HARD
+}
+
+enum AttemptStatus {
+  IN_PROGRESS
+  SUBMITTED
+}
+
+model District {
+  id     String  @id @default(cuid())
+  name   String  @unique
+  blocks Block[]
+  users  User[]
+}
+
+model Block {
+  id         String   @id @default(cuid())
+  name       String
+  districtId String
+  district   District @relation(fields: [districtId], references: [id])
+  users      User[]
+
+  @@unique([districtId, name])
+}
+
+/// Super Admins and Local Admins. They sign in on /admin/login with a username.
+model Admin {
+  id             String    @id @default(cuid())
+  username       String    @unique
+  name           String
+  role           AdminRole
+  passwordHash   String
+  active         Boolean   @default(true)
+  failedLogins   Int       @default(0)
+  lockedUntil    DateTime?
+  sessionVersion Int       @default(0)
+  createdAt      DateTime  @default(now())
+
+  users          User[]
+  managedQuizzes QuizManager[]
+}
+
+/// Quiz-takers (Teacher, Worker, Helper, Dummy).
+/// They sign in with District + Block + Role type + phone + password.
+model User {
+  id                String    @id @default(cuid())
+  name              String
+  phone             String
+  roleType          RoleType
+  districtId        String
+  blockId           String
+  localAdminId      String?
+  /// bcrypt hash, used to check the password at login.
+  passwordHash      String
+  active            Boolean   @default(true)
+  failedLogins      Int       @default(0)
+  lockedUntil       DateTime?
+  sessionVersion    Int       @default(0)
+  passwordChangedAt DateTime?
+  createdAt         DateTime  @default(now())
+
+  district    District     @relation(fields: [districtId], references: [id])
+  block       Block        @relation(fields: [blockId], references: [id])
+  localAdmin  Admin?       @relation(fields: [localAdminId], references: [id])
+  assignments Assignment[]
+  attempts    Attempt[]
+
+  @@unique([districtId, blockId, roleType, phone])
+  @@index([localAdminId])
+}
+
+model QuestionBank {
+  id        String     @id @default(cuid())
+  name      String     @unique
+  createdAt DateTime   @default(now())
+  questions Question[]
+  quizzes   Quiz[]
+}
+
+model Question {
+  id           String     @id @default(cuid())
+  /// The id from the uploaded file, e.g. "q_001".
+  externalId   String
+  bankId       String
+  text         String
+  options      String[]
+  /// 0-based index of the correct option. Never sent to the browser.
+  correctIndex Int
+  difficulty   Difficulty
+  category     String     @default("General")
+  active       Boolean    @default(true)
+
+  bank QuestionBank @relation(fields: [bankId], references: [id], onDelete: Cascade)
+
+  @@unique([bankId, externalId])
+  @@index([bankId, difficulty])
+}
+
+model Quiz {
+  id               String    @id @default(cuid())
+  title            String
+  bankId           String
+  numEasy          Int       @default(10)
+  numMedium        Int       @default(10)
+  numHard          Int       @default(10)
+  timeLimitMinutes Int       @default(30)
+  passingScore     Int       @default(60)
+  opensAt          DateTime?
+  closesAt         DateTime?
+  active           Boolean   @default(true)
+  createdAt        DateTime  @default(now())
+
+  bank        QuestionBank  @relation(fields: [bankId], references: [id])
+  managers    QuizManager[]
+  assignments Assignment[]
+  attempts    Attempt[]
+}
+
+/// Which Local Admins may manage (and assign) a quiz.
+model QuizManager {
+  quizId  String
+  adminId String
+  quiz    Quiz   @relation(fields: [quizId], references: [id], onDelete: Cascade)
+  admin   Admin  @relation(fields: [adminId], references: [id], onDelete: Cascade)
+
+  @@id([quizId, adminId])
+}
+
+model Assignment {
+  quizId     String
+  userId     String
+  assignedAt DateTime @default(now())
+  quiz       Quiz     @relation(fields: [quizId], references: [id], onDelete: Cascade)
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@id([quizId, userId])
+  @@index([userId])
+}
+
+model Attempt {
+  id           String        @id @default(cuid())
+  userId       String
+  quizId       String
+  status       AttemptStatus @default(IN_PROGRESS)
+  startedAt    DateTime      @default(now())
+  deadline     DateTime
+  submittedAt  DateTime?
+  /// Question ids in the order they were shown.
+  questionIds  String[]
+  /// Chosen option per position (0-based), -1 = not answered. Same length as questionIds.
+  answers      Int[]
+  /// Positions the quiz-taker flagged.
+  flagged      Int[]
+  correctCount Int?
+  score        Int?
+  passed       Boolean?
+  userAgent    String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  quiz Quiz @relation(fields: [quizId], references: [id], onDelete: Cascade)
+
+  @@index([userId, quizId])
+  @@index([quizId, status])
+}
+
+/// Security log: sign-ins (successful and not), lockouts, password changes and resets,
+/// account changes, data downloads and refused access. Kept for a year.
+model SecurityEvent {
+  id         String   @id @default(cuid())
+  createdAt  DateTime @default(now())
+  /// For example USER_LOGIN, ADMIN_LOGIN, PASSWORD_CHANGE, ACCOUNT_LOCKED.
+  type       String
+  success    Boolean
+  /// "quiz" or "admin"
+  portal     String
+  /// Who it was about, as "user:<id>" or "admin:<id>", when known.
+  account    String?
+  /// Readable label: admin username, or a quiz-taker's name with the phone masked.
+  label      String?
+  ip         String?
+  userAgent  String?
+  detail     String?
+
+  @@index([createdAt])
+  @@index([type, createdAt])
+}
+
+/// One row of site-wide settings (id = 1).
+model SiteSettings {
+  id               Int       @id @default(1)
+  /// Quiz-takers can sign in and start quizzes only between these times. Empty = no limit.
+  quizSiteOpensAt  DateTime?
+  quizSiteClosesAt DateTime?
+  updatedAt        DateTime  @updatedAt
+  /// Username of the admin who last changed the settings.
+  updatedBy        String?
+}

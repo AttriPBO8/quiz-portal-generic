@@ -1,0 +1,587 @@
+[
+  {
+    "id": "m_001",
+    "text": "What is 14 - 11?",
+    "options": [
+      "3",
+      "8",
+      "5",
+      "6"
+    ],
+    "correctOption": 1,
+    "difficulty": "easy",
+    "category": "Arithmetic"
+  },
+  {
+    "id": "m_002",
+    "text": "What is 3 × 8?",
+    "options": [
+      "22",
+      "26",
+      "19",
+      "24"
+    ],
+    "correctOption": 4,
+    "difficulty": "easy",
+    "category": "Arithmetic"
+  },
+  {
+    "id": "m_003",
+    "text": "What is 38 + 5?",
+    "options": [
+      "43",
+      "53",
+      "41",
+      "33"
+    ],
+    "correctOption": 1,
+    "difficulty": "easy",
+    "category": "Arithmetic"
+  },
+  {
+    "id": "m_004",
+    "text": "What is 37 + 6?",
+    "options": [
+      "45",
+      "42",
+      "43",
+      "40"
+    ],
+    "correctOption": 3,
+    "difficulty": "easy",
+    "category": "Arithmetic"
+  },
+  {
+    "id": "m_005",
+    "text": "What is 3 × 11?",
+    "options": [
+      "34",
+      "31",
+      "43",
+      "33"
+    ],
+    "correctOption": 4,
+    "difficulty": "easy",
+    "category": "Arithmetic"
+  },
+  {
+    "id": "m_006",
+    "text": "What is 9 × 12?",
+    "options": [
+      "113",
+      "108",
+      "109",
+      "110"
+    ],
+    "correctOption": 2,
+    "difficulty": "easy",
+    "category": "Arithmetic"
+  },
+  {
+    "id": "m_007",
+    "text": "What is 21 - 9?",
+    "options": [
+      "9",
+      "10",
+      "7",
+      "12"
+    ],
+    "correctOption": 4,
+    "difficulty": "easy",
+    "category": "Arithmetic"
+  },
+  {
+    "id": "m_008",
+    "text": "What is 48 - 16?",
+    "options": [
+      "31",
+      "42",
+      "27",
+      "32"
+    ],
+    "correctOption": 4,
+    "difficulty": "easy",
+    "category": "Arithmetic"
+  },
+  {
+    "id": "m_009",
+    "text": "What is 50 + 12?",
+    "options": [
+      "65",
+      "62",
+      "59",
+      "64"
+    ],
+    "correctOption": 2,
+    "difficulty": "easy",
+    "category": "Arithmetic"
+  },
+  {
+    "id": "m_010",
+    "text": "What is 7 × 7?",
+    "options": [
+      "44",
+      "52",
+      "59",
+      "49"
+    ],
+    "correctOption": 4,
+    "difficulty": "easy",
+    "category": "Arithmetic"
+  },
+  {
+    "id": "m_011",
+    "text": "What is 2 × 6?",
+    "options": [
+      "11",
+      "12",
+      "22",
+      "15"
+    ],
+    "correctOption": 2,
+    "difficulty": "easy",
+    "category": "Arithmetic"
+  },
+  {
+    "id": "m_012",
+    "text": "What is 31 + 13?",
+    "options": [
+      "44",
+      "54",
+      "41",
+      "39"
+    ],
+    "correctOption": 1,
+    "difficulty": "easy",
+    "category": "Arithmetic"
+  },
+  {
+    "id": "m_013",
+    "text": "What is 10 - 9?",
+    "options": [
+      "2",
+      "1",
+      "6",
+      "5"
+    ],
+    "correctOption": 2,
+    "difficulty": "easy",
+    "category": "Arithmetic"
+  },
+  {
+    "id": "m_014",
+    "text": "What is 8 × 10?",
+    "options": [
+      "81",
+      "82",
+      "80",
+      "79"
+    ],
+    "correctOption": 3,
+    "difficulty": "easy",
+    "category": "Arithmetic"
+  },
+  {
+    "id": "m_015",
+    "text": "What is 13 + 6?",
+    "options": [
+      "17",
+      "9",
+      "22",
+      "19"
+    ],
+    "correctOption": 4,
+    "difficulty": "easy",
+    "category": "Arithmetic"
+  },
+  {
+    "id": "m_016",
+    "text": "What is 20% of 200?",
+    "options": [
+      "41",
+      "45",
+      "40",
+      "50"
+    ],
+    "correctOption": 3,
+    "difficulty": "medium",
+    "category": "Percentages"
+  },
+  {
+    "id": "m_017",
+    "text": "A rectangle is 16 m long and 9 m wide. What is its perimeter in metres?",
+    "options": [
+      "53",
+      "52",
+      "50",
+      "45"
+    ],
+    "correctOption": 3,
+    "difficulty": "medium",
+    "category": "Geometry"
+  },
+  {
+    "id": "m_018",
+    "text": "What is 56 ÷ 4?",
+    "options": [
+      "9",
+      "14",
+      "4",
+      "24"
+    ],
+    "correctOption": 2,
+    "difficulty": "medium",
+    "category": "Arithmetic"
+  },
+  {
+    "id": "m_019",
+    "text": "What is 25% of 360?",
+    "options": [
+      "88",
+      "90",
+      "80",
+      "85"
+    ],
+    "correctOption": 2,
+    "difficulty": "medium",
+    "category": "Percentages"
+  },
+  {
+    "id": "m_020",
+    "text": "What is 20 squared (20²)?",
+    "options": [
+      "395",
+      "403",
+      "401",
+      "400"
+    ],
+    "correctOption": 4,
+    "difficulty": "medium",
+    "category": "Powers"
+  },
+  {
+    "id": "m_021",
+    "text": "A rectangle is 19 m long and 7 m wide. What is its perimeter in metres?",
+    "options": [
+      "47",
+      "49",
+      "52",
+      "53"
+    ],
+    "correctOption": 3,
+    "difficulty": "medium",
+    "category": "Geometry"
+  },
+  {
+    "id": "m_022",
+    "text": "What is 20% of 360?",
+    "options": [
+      "69",
+      "73",
+      "77",
+      "72"
+    ],
+    "correctOption": 4,
+    "difficulty": "medium",
+    "category": "Percentages"
+  },
+  {
+    "id": "m_023",
+    "text": "What is 25 squared (25²)?",
+    "options": [
+      "626",
+      "625",
+      "623",
+      "622"
+    ],
+    "correctOption": 2,
+    "difficulty": "medium",
+    "category": "Powers"
+  },
+  {
+    "id": "m_024",
+    "text": "What is 165 ÷ 15?",
+    "options": [
+      "11",
+      "16",
+      "9",
+      "13"
+    ],
+    "correctOption": 1,
+    "difficulty": "medium",
+    "category": "Arithmetic"
+  },
+  {
+    "id": "m_025",
+    "text": "What is 25% of 200?",
+    "options": [
+      "48",
+      "60",
+      "49",
+      "50"
+    ],
+    "correctOption": 4,
+    "difficulty": "medium",
+    "category": "Percentages"
+  },
+  {
+    "id": "m_026",
+    "text": "What is 12 squared (12²)?",
+    "options": [
+      "147",
+      "144",
+      "142",
+      "139"
+    ],
+    "correctOption": 2,
+    "difficulty": "medium",
+    "category": "Powers"
+  },
+  {
+    "id": "m_027",
+    "text": "A rectangle is 4 m long and 10 m wide. What is its perimeter in metres?",
+    "options": [
+      "30",
+      "28",
+      "23",
+      "29"
+    ],
+    "correctOption": 2,
+    "difficulty": "medium",
+    "category": "Geometry"
+  },
+  {
+    "id": "m_028",
+    "text": "A rectangle is 14 m long and 4 m wide. What is its perimeter in metres?",
+    "options": [
+      "39",
+      "38",
+      "36",
+      "31"
+    ],
+    "correctOption": 3,
+    "difficulty": "medium",
+    "category": "Geometry"
+  },
+  {
+    "id": "m_029",
+    "text": "A rectangle is 8 m long and 12 m wide. What is its perimeter in metres?",
+    "options": [
+      "43",
+      "40",
+      "50",
+      "41"
+    ],
+    "correctOption": 2,
+    "difficulty": "medium",
+    "category": "Geometry"
+  },
+  {
+    "id": "m_030",
+    "text": "What is 10% of 500?",
+    "options": [
+      "47",
+      "45",
+      "50",
+      "55"
+    ],
+    "correctOption": 3,
+    "difficulty": "medium",
+    "category": "Percentages"
+  },
+  {
+    "id": "m_031",
+    "text": "Solve for x: 6x + 10 = 40",
+    "options": [
+      "10",
+      "15",
+      "3",
+      "5"
+    ],
+    "correctOption": 4,
+    "difficulty": "hard",
+    "category": "Algebra"
+  },
+  {
+    "id": "m_032",
+    "text": "What is the simple interest on ₹1000 at 10% per year for 3 years (in ₹)?",
+    "options": [
+      "310",
+      "302",
+      "300",
+      "305"
+    ],
+    "correctOption": 3,
+    "difficulty": "hard",
+    "category": "Interest"
+  },
+  {
+    "id": "m_033",
+    "text": "Solve for x: 9x + 6 = 132",
+    "options": [
+      "4",
+      "14",
+      "24",
+      "11"
+    ],
+    "correctOption": 2,
+    "difficulty": "hard",
+    "category": "Algebra"
+  },
+  {
+    "id": "m_034",
+    "text": "Solve for x: 2x + 22 = 36",
+    "options": [
+      "2",
+      "12",
+      "7",
+      "10"
+    ],
+    "correctOption": 3,
+    "difficulty": "hard",
+    "category": "Algebra"
+  },
+  {
+    "id": "m_035",
+    "text": "A triangle has base 4 cm and height 15 cm. What is its area in cm²?",
+    "options": [
+      "30",
+      "35",
+      "33",
+      "25"
+    ],
+    "correctOption": 1,
+    "difficulty": "hard",
+    "category": "Geometry"
+  },
+  {
+    "id": "m_036",
+    "text": "A triangle has base 12 cm and height 11 cm. What is its area in cm²?",
+    "options": [
+      "64",
+      "71",
+      "66",
+      "76"
+    ],
+    "correctOption": 3,
+    "difficulty": "hard",
+    "category": "Geometry"
+  },
+  {
+    "id": "m_037",
+    "text": "What is the simple interest on ₹5000 at 8% per year for 3 years (in ₹)?",
+    "options": [
+      "1200",
+      "1195",
+      "1202",
+      "1197"
+    ],
+    "correctOption": 1,
+    "difficulty": "hard",
+    "category": "Interest"
+  },
+  {
+    "id": "m_038",
+    "text": "Solve for x: 5x + 3 = 43",
+    "options": [
+      "8",
+      "7",
+      "6",
+      "3"
+    ],
+    "correctOption": 1,
+    "difficulty": "hard",
+    "category": "Algebra"
+  },
+  {
+    "id": "m_039",
+    "text": "What is the simple interest on ₹1000 at 12% per year for 3 years (in ₹)?",
+    "options": [
+      "360",
+      "357",
+      "362",
+      "358"
+    ],
+    "correctOption": 1,
+    "difficulty": "hard",
+    "category": "Interest"
+  },
+  {
+    "id": "m_040",
+    "text": "What is the simple interest on ₹5000 at 10% per year for 2 years (in ₹)?",
+    "options": [
+      "1005",
+      "1000",
+      "1001",
+      "990"
+    ],
+    "correctOption": 2,
+    "difficulty": "hard",
+    "category": "Interest"
+  },
+  {
+    "id": "m_041",
+    "text": "What is the next number in the series 7, 18, 29, 40, …?",
+    "options": [
+      "50",
+      "51",
+      "61",
+      "56"
+    ],
+    "correctOption": 2,
+    "difficulty": "hard",
+    "category": "Patterns"
+  },
+  {
+    "id": "m_042",
+    "text": "Solve for x: 3x + 9 = 27",
+    "options": [
+      "12",
+      "8",
+      "10",
+      "6"
+    ],
+    "correctOption": 4,
+    "difficulty": "hard",
+    "category": "Algebra"
+  },
+  {
+    "id": "m_043",
+    "text": "What is the next number in the series 4, 15, 26, 37, …?",
+    "options": [
+      "53",
+      "58",
+      "48",
+      "51"
+    ],
+    "correctOption": 3,
+    "difficulty": "hard",
+    "category": "Patterns"
+  },
+  {
+    "id": "m_044",
+    "text": "Solve for x: 4x + 29 = 61",
+    "options": [
+      "10",
+      "8",
+      "13",
+      "14"
+    ],
+    "correctOption": 2,
+    "difficulty": "hard",
+    "category": "Algebra"
+  },
+  {
+    "id": "m_045",
+    "text": "What is the simple interest on ₹1000 at 10% per year for 2 years (in ₹)?",
+    "options": [
+      "203",
+      "200",
+      "201",
+      "190"
+    ],
+    "correctOption": 2,
+    "difficulty": "hard",
+    "category": "Interest"
+  }
+]
