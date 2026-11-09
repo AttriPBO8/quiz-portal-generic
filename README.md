@@ -9,7 +9,7 @@ Each customer gets their own copy of the app and their own database, with their 
 ## What it does
 
 **For quiz-takers**
-- Sign in with an email address or phone number, and a password. Nothing else to pick. A phone number works with or without the country code. Everyone starts with a shared starting password and must set their own at first sign-in (and again after an admin resets it).
+- Sign in with an email address or phone number, and a password. Nothing else to pick. A phone number works with or without the country code. Optionally, **Continue with Google** or **Continue with Facebook** for people whose registered email matches (see [docs/SOCIAL-LOGIN.md](docs/SOCIAL-LOGIN.md)). Everyone starts with a shared starting password and must set their own at first sign-in (and again after an admin resets it).
 - My quizzes: Assigned, In progress, Blocked and Completed.
 - Honor code, then a rules pop-up (questions, minutes, pass mark).
 - 30 questions (10 Easy, 10 Medium, 10 Hard by default), picked at random. A retake avoids questions already seen.
@@ -137,6 +137,7 @@ data/sample-media/       Sample pictures, sounds and videos
 tests/                   Automated tests
 docs/DEPLOY-AWS.md       Going live on AWS
 docs/SAAS.md             Setting up a new customer
+docs/SOCIAL-LOGIN.md     Turning on Google and Facebook sign-in
 ```
 
 ## Security notes
@@ -148,6 +149,7 @@ docs/SAAS.md             Setting up a new customer
 - During a quiz, copying, right-click and print shortcuts are blocked. Browsers cannot fully block screenshots, so treat this as a deterrent.
 - Everyone starts with the same password, so quiz-takers must set their own before they can see or take a quiz. Until a person does, anyone who knows their email or phone and the starting password could sign in first, so share the starting password only with the people taking quizzes, and ask them to sign in soon.
 - The sign-in error never says whether an email or phone number exists, and takes the same time either way.
+- Google and Facebook sign-in only works for an email an admin already registered; nobody can sign themselves up. The first such sign-in switches off the shared starting password for that account.
 - Question media is private: files are served only to signed-in admins and to quiz-takers who were given a question using them. Uploads are checked by their content; SVG, HTML and other types that could carry scripts are refused. On AWS the files sit in a private, encrypted S3 bucket.
 - Requests that are too large, use unusual methods, or come too fast from one address are refused (HTTP 413, 405 or 429). Limits: 1200 requests a minute per address (change with `RATE_LIMIT_PER_MINUTE`), 100 quiz sign-in attempts and 30 admin sign-in attempts per 10 minutes per address. On AWS, also turn on the firewall (docs/DEPLOY-AWS.md, step 7).
 - Logs: separate access logs for the quiz and admin sites, a security log and a log of every database change. See docs/DEPLOY-AWS.md, step 8. On a laptop they are in the `logs` folder; the Super Admin also has **Security log** in the admin menu.

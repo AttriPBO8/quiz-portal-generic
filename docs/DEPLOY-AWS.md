@@ -77,6 +77,7 @@ Question pictures, sound clips and videos are kept here. The bucket stays privat
 | `NEXT_PUBLIC_GROUP_LABEL` | optional: what they call a group, e.g. `Department` (default `Group`) |
 | `DEFAULT_COUNTRY_CODE` | optional: country code users may leave off their phone number, e.g. `1` or `91` |
 | `CERTIFICATE_ORGANIZATION`, `CERTIFICATE_PLACE` | optional: printed on certificates |
+| `APP_URL`, `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`, `FACEBOOK_CLIENT_ID`, `FACEBOOK_CLIENT_SECRET` | optional: "Continue with Google / Facebook". See [SOCIAL-LOGIN.md](SOCIAL-LOGIN.md) |
 
 5. **Save and deploy**. The first build takes about 5 minutes. It also creates the database tables.
 6. When it finishes, Amplify shows the app's address (ending in `amplifyapp.com`).

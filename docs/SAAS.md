@@ -38,6 +38,7 @@ Then set the customer's own settings in Amplify > **Environment variables**:
 | `DEFAULT_COUNTRY_CODE` | Country code users may leave off their phone at sign-in | `1`, `91` |
 | `CERTIFICATE_ORGANIZATION` | Organization on certificates | `Acme Corp` |
 | `CERTIFICATE_PLACE` | Place on certificates | `Toronto, Canada` |
+| `APP_URL` + `GOOGLE_*` / `FACEBOOK_*` | "Continue with Google / Facebook" buttons, per customer. See [SOCIAL-LOGIN.md](SOCIAL-LOGIN.md) | |
 
 Settings starting with `NEXT_PUBLIC_` are built into the pages, so after changing one, click **Redeploy this version**.
 

@@ -57,7 +57,7 @@ export async function middleware(req: NextRequest) {
   if (Number(req.headers.get("content-length") ?? 0) > MAX_BODY_BYTES) return refuse(413, "Request too large");
   const wait = requests.hit(ip);
   if (wait) return refuse(429, "Too many requests from this address", wait);
-  if (isAction && (path === "/" || path === "/admin/login")) {
+  if ((isAction && (path === "/" || path === "/admin/login")) || (path.startsWith("/auth/") && path.endsWith("/callback"))) {
     const loginWait = (admin ? adminSignIns : quizSignIns).hit(ip);
     if (loginWait) return refuse(429, "Too many sign-in attempts from this address", loginWait);
   }
