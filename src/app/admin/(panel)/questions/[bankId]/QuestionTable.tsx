@@ -2,15 +2,17 @@
 
 import { useMemo, useState, useTransition } from "react";
 import { setQuestionActive } from "@/app/actions/admin-content";
+import { setQuestionMedia } from "@/app/actions/admin-media";
 
-type Row = { id: string; text: string; difficulty: string; category: string; active: boolean; correctAnswer: string; asked: number; correct: number; wrong: number; skipped: number; correctRate: number | null };
+type Row = { id: string; text: string; media: string; difficulty: string; category: string; active: boolean; correctAnswer: string; asked: number; correct: number; wrong: number; skipped: number; correctRate: number | null };
 const COLS: { key: keyof Row; label: string; numeric?: boolean }[] = [
   { key: "id", label: "Id" }, { key: "difficulty", label: "Level" }, { key: "text", label: "Question" }, { key: "correctAnswer", label: "Correct answer" },
   { key: "asked", label: "Asked", numeric: true }, { key: "correct", label: "Correct", numeric: true }, { key: "wrong", label: "Wrong", numeric: true },
   { key: "skipped", label: "Skipped", numeric: true }, { key: "correctRate", label: "% correct", numeric: true },
 ];
 
-export function QuestionTable({ bankId, rows }: { bankId: string; rows: Row[] }) {
+export function QuestionTable({ bankId, rows, media }: { bankId: string; rows: Row[]; media: { id: string; name: string }[] }) {
+  const mediaId = (name: string) => media.find((m) => m.name === name)?.id ?? "";
   const [sort, setSort] = useState<{ key: keyof Row; dir: 1 | -1 }>({ key: "id", dir: 1 });
   const [busy, start] = useTransition();
   const sorted = useMemo(() => [...rows].sort((a, b) => {
@@ -32,12 +34,20 @@ export function QuestionTable({ bankId, rows }: { bankId: string; rows: Row[] })
               </button>
             </th>
           ))}
+          <th>Media</th>
           <th>In use</th>
         </tr></thead>
         <tbody>
           {sorted.map((r) => (
             <tr key={r.id} className={r.active ? "" : "opacity-60"}>
               {COLS.map((c) => <td key={c.key} className={c.numeric ? "text-right tabular-nums" : c.key === "text" ? "wrap" : ""}>{r[c.key] === null ? "" : String(r[c.key])}</td>)}
+              <td>
+                <select className="input min-w-36 py-1 text-sm" aria-label={`Media for question ${r.id}`} value={mediaId(r.media)} disabled={busy}
+                  onChange={(e) => start(() => setQuestionMedia(bankId, r.id, e.target.value))}>
+                  <option value="">None</option>
+                  {media.map((m) => <option key={m.id} value={m.id}>{m.name}</option>)}
+                </select>
+              </td>
               <td><input type="checkbox" aria-label={`Use question ${r.id}`} checked={r.active} disabled={busy} className="h-5 w-5" onChange={(e) => start(() => setQuestionActive(bankId, r.id, e.target.checked))} /></td>
             </tr>
           ))}

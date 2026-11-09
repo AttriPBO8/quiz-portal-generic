@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { requireAdmin } from "@/lib/auth";
-import { ROLE_TYPES } from "@/lib/constants";
-import { filterOptions, getResultRows, STATUS_LABEL, summarize, type ResultFilters } from "@/lib/reports";
+import { GROUP_LABEL } from "@/lib/constants";
+import { filterOptions, getResultRows, peopleFilters, STATUS_LABEL, summarize, type ResultFilters } from "@/lib/reports";
 import { FilterBar } from "@/components/FilterBar";
 import { SortableTable } from "@/components/SortableTable";
 
@@ -26,7 +26,7 @@ export default async function Results({ searchParams }: { searchParams: Promise<
       <div className="flex flex-wrap items-end gap-3">
         <div className="flex-1">
           <h1 className="text-2xl font-bold">Results</h1>
-          <p className="text-muted">{admin.role === "SUPER_ADMIN" ? "Everyone" : "Your users"}, one row per person per quiz. Dummy accounts are hidden unless you filter for them.</p>
+          <p className="text-muted">{admin.role === "SUPER_ADMIN" ? "Everyone" : "Your users"}, one row per person per quiz. Test accounts are hidden unless you filter for them.</p>
         </div>
         {sum.passed > 0 && <Link className="btn btn-secondary" href={`/admin/certificates?${query}`}>Certificates for passed ({sum.passed})</Link>}
         <a className="btn btn-secondary" href={`/admin/export/results?${query}`}>Download CSV</a>
@@ -42,24 +42,22 @@ export default async function Results({ searchParams }: { searchParams: Promise<
       </dl>
 
       <FilterBar
-        search="Name or phone"
+        search="Name, email or phone"
         filters={[
           { name: "quizId", label: "Quiz", options: opts.quizzes.map((q) => ({ value: q.id, label: q.title })) },
-          { name: "districtId", label: "District", options: opts.districts.map((d) => ({ value: d.id, label: d.name })) },
-          { name: "blockId", label: "Block", options: opts.blocks.filter((b) => !f.districtId || b.districtId === f.districtId).map((b) => ({ value: b.id, label: b.name })) },
-          { name: "roleType", label: "Role", options: ROLE_TYPES.map((r) => ({ value: r.value, label: r.label })) },
+          ...peopleFilters(opts, GROUP_LABEL),
           { name: "status", label: "Status", options: Object.entries(STATUS_LABEL).map(([value, label]) => ({ value, label })) },
         ]}
       />
 
       <SortableTable
-        defaultSort={["district", "block", "role", "name"]}
+        defaultSort={["group", "role", "name"]}
         empty="No results match these filters."
         columns={[
-          { key: "district", label: "District" },
-          { key: "block", label: "Block" },
+          { key: "group", label: GROUP_LABEL },
           { key: "role", label: "Role" },
           { key: "name", label: "Name", linkKey: "href" },
+          { key: "email", label: "Email" },
           { key: "phone", label: "Phone" },
           ...(admin.role === "SUPER_ADMIN" ? [{ key: "localAdmin", label: "Local Admin" }] : []),
           { key: "quiz", label: "Quiz" },

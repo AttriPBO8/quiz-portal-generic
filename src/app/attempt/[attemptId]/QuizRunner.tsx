@@ -4,11 +4,12 @@ import { useCallback, useEffect, useMemo, useRef, useState, useTransition } from
 import { Logo } from "@/components/AppHeader";
 import { ThemeControls } from "@/components/ThemeControls";
 import { saveAnswer, setFlag, submitAttempt } from "@/app/actions/quiz";
+import { QuestionMedia, type MediaInfo } from "@/components/QuestionMedia";
 
 // The quiz screen: question panel, question, timer, flags and submit.
 // Answers save to the server as they are chosen; scoring happens on the server.
 
-type Question = { text: string; options: string[] };
+type Question = { text: string; options: string[]; media: MediaInfo | null };
 
 const BANNER_AT = 15 * 60; // seconds left when the yellow reminder appears
 const CRITICAL_AT = 5 * 60; // seconds left when the timer turns red and blinks
@@ -210,6 +211,10 @@ export function QuizRunner(props: {
             <span>Question {current + 1} of {total}</span>
             {flagged.has(current) && <span className="inline-flex items-center gap-1 text-flag"><FlagIcon className="h-4 w-4" /> Flagged</span>}
           </div>
+          {q.media && (
+            // key: a new player for each question, so sound or video from the last one stops.
+            <div key={current} className="mt-4 flex justify-center"><QuestionMedia media={q.media} /></div>
+          )}
           <p className="mt-3 whitespace-pre-line text-lg font-medium leading-relaxed sm:text-xl">{q.text}</p>
           <div className="mt-5 space-y-3" role="radiogroup" aria-label={`Answer options for question ${current + 1}`}>
             {q.options.map((opt, i) => {

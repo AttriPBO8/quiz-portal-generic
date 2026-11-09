@@ -4,7 +4,7 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 // Filter drop-downs that update the page address, so a filtered view can be bookmarked or downloaded.
 
-export type Filter = { name: string; label: string; options: { value: string; label: string }[] };
+export type Filter = { name: string; label: string; options: { value: string; label: string }[]; allLabel?: string };
 
 export function FilterBar({ filters, search, children }: { filters: Filter[]; search?: string; children?: React.ReactNode }) {
   const router = useRouter();
@@ -13,7 +13,6 @@ export function FilterBar({ filters, search, children }: { filters: Filter[]; se
   const set = (name: string, value: string) => {
     const next = new URLSearchParams(params);
     if (value) next.set(name, value); else next.delete(name);
-    if (name === "districtId") next.delete("blockId");
     router.replace(`${path}?${next}`);
   };
   return (
@@ -22,7 +21,7 @@ export function FilterBar({ filters, search, children }: { filters: Filter[]; se
         <label key={f.name} className="min-w-36 flex-1 sm:flex-none">
           <span className="label">{f.label}</span>
           <select className="input" value={params.get(f.name) ?? ""} onChange={(e) => set(f.name, e.target.value)}>
-            <option value="">All</option>
+            <option value="">{f.allLabel ?? "All"}</option>
             {f.options.map((o) => <option key={o.value} value={o.value}>{o.label}</option>)}
           </select>
         </label>

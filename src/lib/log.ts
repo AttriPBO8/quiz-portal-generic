@@ -1,5 +1,6 @@
 import { appendFile, mkdir } from "node:fs/promises";
 import path from "node:path";
+import { maskEmail, maskPhone } from "./contact";
 
 // Structured logs, one JSON object per line, kept in separate channels:
 //   quiz-access   every request to the quiz-taker site
@@ -27,12 +28,14 @@ export function redact(value: unknown, depth = 0): unknown {
   if (Array.isArray(value)) return value.length > 50 ? `[${value.length} items]` : value.map((v) => redact(v, depth + 1));
   return Object.fromEntries(Object.entries(value).map(([k, v]) => [
     k,
-    SECRET_KEY.test(k) ? "[hidden]" : k === "phone" && typeof v === "string" ? maskPhone(v) : redact(v, depth + 1),
+    SECRET_KEY.test(k) ? "[hidden]"
+    : k === "phone" && typeof v === "string" ? maskPhone(v)
+    : k === "email" && typeof v === "string" ? maskEmail(v)
+    : redact(v, depth + 1),
   ]));
 }
 
-/** Shows only the last 4 digits of a phone number, enough to tell people apart in a log. */
-export const maskPhone = (phone: string) => (phone.length > 4 ? `${"*".repeat(phone.length - 4)}${phone.slice(-4)}` : "****");
+export { maskPhone, maskEmail };
 
 export function writeLog(channel: LogChannel, entry: Record<string, unknown>) {
   const time = new Date();

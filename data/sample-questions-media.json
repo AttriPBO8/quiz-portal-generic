@@ -1,0 +1,12 @@
+[
+  { "id": "m_001", "text": "How many sides does this shape have?", "options": ["4", "5", "6", "8"], "correctOption": 3, "difficulty": "easy", "category": "Pictures", "media": "hexagon.png" },
+  { "id": "m_002", "text": "Play the sound. How many beeps do you hear?", "options": ["2", "3", "4", "5"], "correctOption": 2, "difficulty": "easy", "category": "Sound", "media": "three-beeps.mp3" },
+  { "id": "m_003", "text": "Play the video. Which way does the red square move?", "options": ["Left to right", "Right to left", "Top to bottom", "It does not move"], "correctOption": 1, "difficulty": "easy", "category": "Video", "media": "moving-square.mp4" },
+  { "id": "m_004", "text": "What should a driver do at this traffic light?", "options": ["Speed up", "Stop", "Go if the road is clear", "Sound the horn"], "correctOption": 2, "difficulty": "easy", "category": "Pictures", "media": "traffic-light.png" },
+  { "id": "m_005", "text": "Which month had the highest sales?", "options": ["January", "February", "March", "April"], "correctOption": 4, "difficulty": "medium", "category": "Pictures", "media": "bar-chart.png" },
+  { "id": "m_006", "text": "What time does the clock show?", "options": ["12:15", "3:00", "12:03", "9:00"], "correctOption": 2, "difficulty": "medium", "category": "Pictures", "media": "clock.png" },
+  { "id": "m_007", "text": "Play the sound. Does the pitch go up or down?", "options": ["Up", "Down", "It stays the same", "Up, then down"], "correctOption": 1, "difficulty": "medium", "category": "Sound", "media": "rising-tone.mp3" },
+  { "id": "m_008", "text": "Play the video. Which colour appears second?", "options": ["Red", "Green", "Blue", "Yellow"], "correctOption": 2, "difficulty": "hard", "category": "Video", "media": "colour-sequence.mp4" },
+  { "id": "m_009", "text": "Using the chart, how many more units were sold in April than in January?", "options": ["20", "35", "40", "45"], "correctOption": 3, "difficulty": "hard", "category": "Pictures", "media": "bar-chart.png" },
+  { "id": "m_010", "text": "Using the chart, what were the total sales for February and March together?", "options": ["80", "90", "95", "100"], "correctOption": 2, "difficulty": "hard", "category": "Pictures", "media": "bar-chart.png" }
+]

@@ -1,5 +1,4 @@
 import { logoutUser } from "@/app/actions/user-auth";
-import { roleLabel } from "@/lib/constants";
 import type { getCurrentUser } from "@/lib/auth";
 import { AppHeader, initials } from "./AppHeader";
 import { UserMenu } from "./UserMenu";
@@ -15,7 +14,7 @@ export function UserHeader({ user, title }: { user: U; title?: string }) {
         <UserMenu
           name={user.name}
           initials={initials(user.name)}
-          detail={`${roleLabel(user.roleType)} · ${user.block.name}, ${user.district.name}`}
+          detail={user.email ?? user.phone ?? undefined}
           links={[{ href: "/quizzes", label: "My quizzes" }, { href: "/account/password", label: "Change password" }]}
           onSignOut={logoutUser}
         />

@@ -1,0 +1,10 @@
+[
+  { "file": "bar-chart.png", "altText": "Bar chart of monthly sales: January 40, February 55, March 35, April 80 units" },
+  { "file": "hexagon.png", "altText": "A yellow shape with straight sides" },
+  { "file": "clock.png", "altText": "An analogue clock face" },
+  { "file": "traffic-light.png", "altText": "A traffic light with the top light lit" },
+  { "file": "three-beeps.mp3", "altText": "A short series of beeps" },
+  { "file": "rising-tone.mp3", "altText": "A single tone whose pitch changes" },
+  { "file": "moving-square.mp4", "altText": "A red square moving across a light background (no sound)" },
+  { "file": "colour-sequence.mp4", "altText": "The screen shows three colours, one after another (no sound)" }
+]

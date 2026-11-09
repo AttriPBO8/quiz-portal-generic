@@ -18,9 +18,9 @@ export default async function AttemptPage({ params }: { params: Promise<{ attemp
   }
 
   // Only the question text and options go to the browser, never the correct answer.
-  const rows = await db.question.findMany({ where: { id: { in: attempt.questionIds } }, select: { id: true, text: true, options: true } });
+  const rows = await db.question.findMany({ where: { id: { in: attempt.questionIds } }, select: { id: true, text: true, options: true, media: { select: { id: true, kind: true, altText: true, mimeType: true } } } });
   const byId = new Map(rows.map((q) => [q.id, q]));
-  const questions = attempt.questionIds.map((id) => ({ text: byId.get(id)?.text ?? "(question removed)", options: byId.get(id)?.options ?? [] }));
+  const questions = attempt.questionIds.map((id) => ({ text: byId.get(id)?.text ?? "(question removed)", options: byId.get(id)?.options ?? [], media: byId.get(id)?.media ?? null }));
 
   return (
     <QuizRunner

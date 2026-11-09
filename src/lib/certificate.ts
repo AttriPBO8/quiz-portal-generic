@@ -2,14 +2,16 @@ import "server-only";
 import type { Admin } from "@prisma/client";
 import { db } from "./db";
 import { quizScope, userScope } from "./auth";
-import { roleLabel, TIME_ZONE } from "./constants";
+import { formatLongDate } from "./constants";
+export { formatLongDate };
 
 // Wording and signatories printed on every Certificate of Completion.
 // These are sample values: change the names here, and replace the two files in
 // public/signatures/ with scans of the real signatures (PNG with a transparent background works best).
+// Organization and place can also be set per customer with CERTIFICATE_ORGANIZATION and CERTIFICATE_PLACE.
 export const CERTIFICATE = {
-  organization: "Sample Training Institute",
-  place: "New Delhi, India",
+  organization: process.env.CERTIFICATE_ORGANIZATION || "Sample Training Institute",
+  place: process.env.CERTIFICATE_PLACE || "Toronto, Canada",
   title: "Certificate of Completion",
   showScore: true,
   signatories: [
@@ -28,8 +30,6 @@ export type Certificate = {
   completedOn: string;
 };
 
-export const formatLongDate = (d: Date) =>
-  d.toLocaleDateString("en-IN", { timeZone: TIME_ZONE, day: "numeric", month: "long", year: "numeric" });
 
 /**
  * Certificates for the given passed attempts, limited to users and quizzes the admin may see.
@@ -42,7 +42,7 @@ export async function getCertificates(admin: Pick<Admin, "id" | "role">, attempt
     select: {
       id: true, score: true, submittedAt: true,
       quiz: { select: { title: true } },
-      user: { select: { name: true, roleType: true, district: { select: { name: true } }, block: { select: { name: true } } } },
+      user: { select: { name: true, role: true, group: true } },
     },
   });
   return attempts
@@ -50,7 +50,7 @@ export async function getCertificates(admin: Pick<Admin, "id" | "role">, attempt
       id: a.id,
       number: `QP-${a.submittedAt!.getFullYear()}-${a.id.slice(-8).toUpperCase()}`,
       name: a.user.name,
-      detail: `${roleLabel(a.user.roleType)}, ${a.user.block.name}, ${a.user.district.name}`,
+      detail: [a.user.role, a.user.group].filter(Boolean).join(", "),
       training: a.quiz.title,
       score: a.score ?? 0,
       completedOn: formatLongDate(a.submittedAt!),

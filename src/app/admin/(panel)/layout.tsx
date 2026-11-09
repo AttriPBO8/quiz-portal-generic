@@ -13,7 +13,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
     { href: "/admin", label: "Results" },
     { href: "/admin/users", label: "Users" },
     { href: "/admin/quizzes", label: "Quizzes" },
-    ...(isSuper ? [{ href: "/admin/questions", label: "Question banks" }, { href: "/admin/admins", label: "Admins" }, { href: "/admin/site", label: "Quiz site" }, { href: "/admin/security", label: "Security log" }] : []),
+    ...(isSuper ? [{ href: "/admin/questions", label: "Question banks" }, { href: "/admin/media", label: "Media library" }, { href: "/admin/admins", label: "Admins" }, { href: "/admin/site", label: "Quiz site" }, { href: "/admin/security", label: "Security log" }] : []),
   ];
   return (
     <>

@@ -2,7 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { requireAdmin, userScope } from "@/lib/auth";
 import { db } from "@/lib/db";
-import { formatDate, formatDateTime, roleLabel } from "@/lib/constants";
+import { formatDate, formatDateTime } from "@/lib/constants";
 import { SortableTable } from "@/components/SortableTable";
 
 export default async function AttemptDetail({ params }: { params: Promise<{ attemptId: string }> }) {
@@ -10,11 +10,11 @@ export default async function AttemptDetail({ params }: { params: Promise<{ atte
   const { attemptId } = await params;
   const attempt = await db.attempt.findFirst({
     where: { id: attemptId, user: userScope(admin) },
-    include: { quiz: true, user: { include: { district: true, block: true } } },
+    include: { quiz: true, user: true },
   });
   if (!attempt) notFound();
   const all = await db.attempt.findMany({ where: { userId: attempt.userId, quizId: attempt.quizId }, orderBy: { startedAt: "asc" }, select: { id: true, startedAt: true, score: true, status: true } });
-  const questions = await db.question.findMany({ where: { id: { in: attempt.questionIds } } });
+  const questions = await db.question.findMany({ where: { id: { in: attempt.questionIds } }, include: { media: true } });
   const byId = new Map(questions.map((q) => [q.id, q]));
   const letter = (i: number) => (i >= 0 ? String.fromCharCode(65 + i) : "");
   const rows = attempt.questionIds.map((id, i) => {
@@ -25,6 +25,7 @@ export default async function AttemptDetail({ params }: { params: Promise<{ atte
       id: q?.externalId ?? id,
       difficulty: q?.difficulty ?? "",
       text: q?.text ?? "(removed)",
+      media: q?.media ? q.media.kind.toLowerCase() : "",
       given: a >= 0 && q ? `${letter(a)}. ${q.options[a]}` : "",
       correct: q ? `${letter(q.correctIndex)}. ${q.options[q.correctIndex]}` : "",
       result: a === -1 ? "Skipped" : q && a === q.correctIndex ? "Correct" : "Wrong",
@@ -38,7 +39,7 @@ export default async function AttemptDetail({ params }: { params: Promise<{ atte
       <div className="flex flex-wrap items-end gap-3">
         <div className="flex-1">
           <h1 className="text-2xl font-bold">{u.name} · {attempt.quiz.title}</h1>
-          <p className="text-muted">{roleLabel(u.roleType)} · {u.block.name}, {u.district.name} · {u.phone}</p>
+          <p className="text-muted">{[u.role, u.group, u.email, u.phone].filter(Boolean).join(" · ")}{u.testAccount && " · Test account"}</p>
         </div>
         {attempt.passed && <Link className="btn btn-primary" href={`/admin/certificates?attempt=${attempt.id}`}>Certificate of Completion</Link>}
         <a className="btn btn-secondary" href={`/admin/export/attempt/${attempt.id}`}>Download CSV</a>
@@ -63,6 +64,7 @@ export default async function AttemptDetail({ params }: { params: Promise<{ atte
           { key: "id", label: "Question id" },
           { key: "difficulty", label: "Level" },
           { key: "text", label: "Question", wrap: true },
+          { key: "media", label: "Media" },
           { key: "given", label: "Answer given" },
           { key: "correct", label: "Correct answer" },
           { key: "result", label: "Result", badge: true },

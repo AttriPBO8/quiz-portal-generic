@@ -1,6 +1,7 @@
 "use client";
 
-import { useActionState, useState } from "react";
+import { useActionState } from "react";
+import { TIME_ZONE_LABEL } from "@/lib/constants";
 import { assignQuiz, createQuiz, updateQuiz, type QuizFormState } from "@/app/actions/admin-quizzes";
 
 type Settings = { title: string; numEasy: number; numMedium: number; numHard: number; timeLimitMinutes: number; passingScore: number; opensAt: string; closesAt: string; active: boolean };
@@ -25,8 +26,8 @@ function SettingsFields({ s, showActive }: { s: Settings; showActive?: boolean }
       {num("timeLimitMinutes", "Time limit (minutes)", 1, 300)}
       {num("passingScore", "Pass mark (%)", 1, 100)}
       <div />
-      <label><span className="label">Opens (India time, optional)</span><input className="input" type="datetime-local" name="opensAt" defaultValue={s.opensAt} /></label>
-      <label><span className="label">Complete by (India time, optional)</span><input className="input" type="datetime-local" name="closesAt" defaultValue={s.closesAt} /></label>
+      <label><span className="label">Opens ({TIME_ZONE_LABEL}, optional)</span><input className="input" type="datetime-local" name="opensAt" defaultValue={s.opensAt} /></label>
+      <label><span className="label">Complete by ({TIME_ZONE_LABEL}, optional)</span><input className="input" type="datetime-local" name="closesAt" defaultValue={s.closesAt} /></label>
       {showActive && (
         <label className="flex items-center gap-2 self-end pb-3"><input type="checkbox" name="active" defaultChecked={s.active} className="h-5 w-5" /> Visible to quiz-takers</label>
       )}
@@ -64,23 +65,19 @@ export function EditQuizForm({ quizId, settings }: { quizId: string; settings: S
   );
 }
 
-type Opt = { id: string; name: string };
-export function AssignForm({ quizId, districts, blocks }: { quizId: string; districts: Opt[]; blocks: (Opt & { districtId: string })[] }) {
+export function AssignForm({ quizId, groups, roles, groupLabel }: { quizId: string; groups: string[]; roles: string[]; groupLabel: string }) {
   const [state, action, pending] = useActionState(assignQuiz.bind(null, quizId), undefined);
-  const [districtId, setDistrictId] = useState("");
   return (
     <form action={action} className="space-y-3">
       <div className="grid gap-3 sm:grid-cols-3">
-        <label><span className="label">District</span>
-          <select className="input" name="districtId" value={districtId} onChange={(e) => setDistrictId(e.target.value)}>
-            <option value="">All districts</option>{districts.map((d) => <option key={d.id} value={d.id}>{d.name}</option>)}
-          </select>
-        </label>
-        <label><span className="label">Block</span>
-          <select className="input" name="blockId"><option value="">All blocks</option>{blocks.filter((b) => !districtId || b.districtId === districtId).map((b) => <option key={b.id} value={b.id}>{b.name}</option>)}</select>
+        <label><span className="label">{groupLabel}</span>
+          <select className="input" name="group"><option value="">All</option>{groups.map((g) => <option key={g} value={g}>{g}</option>)}</select>
         </label>
         <label><span className="label">Role</span>
-          <select className="input" name="roleType"><option value="">All roles</option><option value="TEACHER">Teacher</option><option value="WORKER">Worker</option><option value="HELPER">Helper</option><option value="DUMMY">Dummy</option></select>
+          <select className="input" name="role"><option value="">All roles</option>{roles.map((r) => <option key={r} value={r}>{r}</option>)}</select>
+        </label>
+        <label><span className="label">Accounts</span>
+          <select className="input" name="test"><option value="">Real and test accounts</option><option value="hide">Real accounts only</option><option value="only">Test accounts only</option></select>
         </label>
       </div>
       <Message state={state} />
