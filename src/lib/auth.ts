@@ -10,10 +10,7 @@ import { securityEvent } from "./security";
 export const getCurrentUser = cache(async () => {
   const s = await readSession("user");
   if (!s) return null;
-  const user = await db.user.findUnique({
-    where: { id: s.sub },
-    include: { district: true, block: true },
-  });
+  const user = await db.user.findUnique({ where: { id: s.sub } });
   if (!user || !user.active || user.sessionVersion !== s.ver) return null;
   return user;
 });

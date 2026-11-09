@@ -2,30 +2,13 @@
 CREATE TYPE "AdminRole" AS ENUM ('SUPER_ADMIN', 'LOCAL_ADMIN');
 
 -- CreateEnum
-CREATE TYPE "RoleType" AS ENUM ('TEACHER', 'WORKER', 'HELPER', 'DUMMY');
-
--- CreateEnum
 CREATE TYPE "Difficulty" AS ENUM ('EASY', 'MEDIUM', 'HARD');
 
 -- CreateEnum
+CREATE TYPE "MediaKind" AS ENUM ('IMAGE', 'AUDIO', 'VIDEO');
+
+-- CreateEnum
 CREATE TYPE "AttemptStatus" AS ENUM ('IN_PROGRESS', 'SUBMITTED');
-
--- CreateTable
-CREATE TABLE "District" (
-    "id" TEXT NOT NULL,
-    "name" TEXT NOT NULL,
-
-    CONSTRAINT "District_pkey" PRIMARY KEY ("id")
-);
-
--- CreateTable
-CREATE TABLE "Block" (
-    "id" TEXT NOT NULL,
-    "name" TEXT NOT NULL,
-    "districtId" TEXT NOT NULL,
-
-    CONSTRAINT "Block_pkey" PRIMARY KEY ("id")
-);
 
 -- CreateTable
 CREATE TABLE "Admin" (
@@ -47,13 +30,13 @@ CREATE TABLE "Admin" (
 CREATE TABLE "User" (
     "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
-    "phone" TEXT NOT NULL,
-    "roleType" "RoleType" NOT NULL,
-    "districtId" TEXT NOT NULL,
-    "blockId" TEXT NOT NULL,
+    "email" TEXT,
+    "phone" TEXT,
+    "role" TEXT NOT NULL DEFAULT 'Learner',
+    "group" TEXT NOT NULL DEFAULT '',
+    "testAccount" BOOLEAN NOT NULL DEFAULT false,
     "localAdminId" TEXT,
     "passwordHash" TEXT NOT NULL,
-    "passwordEncrypted" TEXT NOT NULL,
     "active" BOOLEAN NOT NULL DEFAULT true,
     "failedLogins" INTEGER NOT NULL DEFAULT 0,
     "lockedUntil" TIMESTAMP(3),
@@ -62,6 +45,21 @@ CREATE TABLE "User" (
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "User_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "MediaFile" (
+    "id" TEXT NOT NULL,
+    "name" TEXT NOT NULL,
+    "kind" "MediaKind" NOT NULL,
+    "mimeType" TEXT NOT NULL,
+    "size" INTEGER NOT NULL,
+    "altText" TEXT NOT NULL DEFAULT '',
+    "storageKey" TEXT NOT NULL,
+    "uploadedBy" TEXT,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "MediaFile_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -84,6 +82,7 @@ CREATE TABLE "Question" (
     "difficulty" "Difficulty" NOT NULL,
     "category" TEXT NOT NULL DEFAULT 'General',
     "active" BOOLEAN NOT NULL DEFAULT true,
+    "mediaId" TEXT,
 
     CONSTRAINT "Question_pkey" PRIMARY KEY ("id")
 );
@@ -143,26 +142,65 @@ CREATE TABLE "Attempt" (
     CONSTRAINT "Attempt_pkey" PRIMARY KEY ("id")
 );
 
--- CreateIndex
-CREATE UNIQUE INDEX "District_name_key" ON "District"("name");
+-- CreateTable
+CREATE TABLE "SecurityEvent" (
+    "id" TEXT NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "type" TEXT NOT NULL,
+    "success" BOOLEAN NOT NULL,
+    "portal" TEXT NOT NULL,
+    "account" TEXT,
+    "label" TEXT,
+    "ip" TEXT,
+    "userAgent" TEXT,
+    "detail" TEXT,
 
--- CreateIndex
-CREATE UNIQUE INDEX "Block_districtId_name_key" ON "Block"("districtId", "name");
+    CONSTRAINT "SecurityEvent_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "SiteSettings" (
+    "id" INTEGER NOT NULL DEFAULT 1,
+    "quizSiteOpensAt" TIMESTAMP(3),
+    "quizSiteClosesAt" TIMESTAMP(3),
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+    "updatedBy" TEXT,
+
+    CONSTRAINT "SiteSettings_pkey" PRIMARY KEY ("id")
+);
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Admin_username_key" ON "Admin"("username");
 
 -- CreateIndex
+CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "User_phone_key" ON "User"("phone");
+
+-- CreateIndex
 CREATE INDEX "User_localAdminId_idx" ON "User"("localAdminId");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "User_districtId_blockId_roleType_phone_key" ON "User"("districtId", "blockId", "roleType", "phone");
+CREATE INDEX "User_role_idx" ON "User"("role");
+
+-- CreateIndex
+CREATE INDEX "User_group_idx" ON "User"("group");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "MediaFile_name_key" ON "MediaFile"("name");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "MediaFile_storageKey_key" ON "MediaFile"("storageKey");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "QuestionBank_name_key" ON "QuestionBank"("name");
 
 -- CreateIndex
 CREATE INDEX "Question_bankId_difficulty_idx" ON "Question"("bankId", "difficulty");
+
+-- CreateIndex
+CREATE INDEX "Question_mediaId_idx" ON "Question"("mediaId");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Question_bankId_externalId_key" ON "Question"("bankId", "externalId");
@@ -176,20 +214,20 @@ CREATE INDEX "Attempt_userId_quizId_idx" ON "Attempt"("userId", "quizId");
 -- CreateIndex
 CREATE INDEX "Attempt_quizId_status_idx" ON "Attempt"("quizId", "status");
 
--- AddForeignKey
-ALTER TABLE "Block" ADD CONSTRAINT "Block_districtId_fkey" FOREIGN KEY ("districtId") REFERENCES "District"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+-- CreateIndex
+CREATE INDEX "SecurityEvent_createdAt_idx" ON "SecurityEvent"("createdAt");
 
--- AddForeignKey
-ALTER TABLE "User" ADD CONSTRAINT "User_districtId_fkey" FOREIGN KEY ("districtId") REFERENCES "District"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "User" ADD CONSTRAINT "User_blockId_fkey" FOREIGN KEY ("blockId") REFERENCES "Block"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+-- CreateIndex
+CREATE INDEX "SecurityEvent_type_createdAt_idx" ON "SecurityEvent"("type", "createdAt");
 
 -- AddForeignKey
 ALTER TABLE "User" ADD CONSTRAINT "User_localAdminId_fkey" FOREIGN KEY ("localAdminId") REFERENCES "Admin"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Question" ADD CONSTRAINT "Question_bankId_fkey" FOREIGN KEY ("bankId") REFERENCES "QuestionBank"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Question" ADD CONSTRAINT "Question_mediaId_fkey" FOREIGN KEY ("mediaId") REFERENCES "MediaFile"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Quiz" ADD CONSTRAINT "Quiz_bankId_fkey" FOREIGN KEY ("bankId") REFERENCES "QuestionBank"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

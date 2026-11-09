@@ -2,6 +2,10 @@ import type { NextConfig } from "next";
 
 const isDev = process.env.NODE_ENV !== "production";
 
+// Question media comes from the app itself, or (on AWS) from a short-lived link to the private S3 bucket.
+const bucket = process.env.MEDIA_BUCKET;
+const mediaOrigin = bucket ? ` https://${bucket}.s3.${process.env.MEDIA_BUCKET_REGION || "ap-south-1"}.amazonaws.com` : "";
+
 // Browser security headers sent with every page.
 const securityHeaders = [
   {
@@ -10,7 +14,8 @@ const securityHeaders = [
       "default-src 'self'",
       `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""}`,
       "style-src 'self' 'unsafe-inline'",
-      "img-src 'self' data: blob:",
+      `img-src 'self' data: blob:${mediaOrigin}`,
+      `media-src 'self'${mediaOrigin}`,
       "font-src 'self' data:",
       "connect-src 'self'",
       "frame-ancestors 'none'",

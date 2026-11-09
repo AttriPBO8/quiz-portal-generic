@@ -43,3 +43,6 @@ next-env.d.ts
 
 # app logs (written on a laptop; on AWS they go to CloudWatch)
 /logs/
+
+# question media saved on a laptop (on AWS they go to S3)
+/media-files/

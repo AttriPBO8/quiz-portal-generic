@@ -1,11 +1,12 @@
 "use client";
 
 import { useState, useTransition } from "react";
+import Link from "next/link";
 import { resetPassword, setUserActive } from "@/app/actions/admin-users";
 
-type U = { id: string; name: string; phone: string; role: string; district: string; block: string; localAdmin: string; active: boolean; ownPassword: boolean; locked: boolean };
+type U = { id: string; name: string; email: string; phone: string; role: string; group: string; test: boolean; localAdmin: string; active: boolean; ownPassword: boolean; locked: boolean };
 
-export function UsersTable({ users, showLocalAdmin }: { users: U[]; showLocalAdmin: boolean }) {
+export function UsersTable({ users, showLocalAdmin, groupLabel }: { users: U[]; showLocalAdmin: boolean; groupLabel: string }) {
   const [notice, setNotice] = useState<Record<string, string>>({});
   const [busy, start] = useTransition();
   const [menu, setMenu] = useState<string | null>(null);
@@ -16,7 +17,7 @@ export function UsersTable({ users, showLocalAdmin }: { users: U[]; showLocalAdm
       <table className="table">
         <thead>
           <tr>
-            <th>District</th><th>Block</th><th>Role</th><th>Name</th><th>Phone</th>
+            <th>Name</th><th>Email</th><th>Phone</th><th>Role</th><th>{groupLabel}</th>
             {showLocalAdmin && <th>Local Admin</th>}
             <th>Password</th><th>Status</th><th><span className="sr-only">Actions</span></th>
           </tr>
@@ -24,7 +25,8 @@ export function UsersTable({ users, showLocalAdmin }: { users: U[]; showLocalAdm
         <tbody>
           {users.map((u) => (
             <tr key={u.id} className={u.active ? "" : "opacity-60"}>
-              <td>{u.district}</td><td>{u.block}</td><td>{u.role}</td><td className="font-medium">{u.name}</td><td className="tabular-nums">{u.phone}</td>
+              <td className="font-medium">{u.name}{u.test && <span className="ml-2 rounded-full bg-surface-2 px-2 py-0.5 text-xs text-muted">Test</span>}</td>
+              <td className="break-all">{u.email}</td><td className="tabular-nums">{u.phone}</td><td>{u.role}</td><td>{u.group}</td>
               {showLocalAdmin && <td>{u.localAdmin}</td>}
               <td className="whitespace-nowrap">
                 <div>{u.ownPassword ? "Set by user" : "Starting password"}</div>
@@ -38,6 +40,7 @@ export function UsersTable({ users, showLocalAdmin }: { users: U[]; showLocalAdm
                 <button className="btn btn-secondary px-2 py-1 text-sm" aria-haspopup="menu" aria-expanded={menu === u.id} onClick={() => setMenu(menu === u.id ? null : u.id)}>⋯</button>
                 {menu === u.id && (
                   <div className="card absolute right-2 z-10 mt-1 w-56 p-1 shadow-lg" role="menu" onMouseLeave={() => setMenu(null)}>
+                    <Link role="menuitem" href={`/admin/users/${u.id}`} className="block w-full rounded px-3 py-2 text-left hover:bg-surface-2">Edit details</Link>
                     <button role="menuitem" className="block w-full rounded px-3 py-2 text-left hover:bg-surface-2" disabled={busy}
                       onClick={() => start(async () => { await resetPassword(u.id); setNotice((s) => ({ ...s, [u.id]: "Reset. They must set a new one at sign-in." })); setMenu(null); })}>
                       Reset to starting password

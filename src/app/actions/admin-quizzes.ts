@@ -61,13 +61,15 @@ export async function setQuizManagers(quizId: string, form: FormData) {
 /** Assigns (or removes) the quiz for every user matching the filters that this admin manages. */
 export async function assignQuiz(quizId: string, _: QuizFormState, form: FormData): Promise<QuizFormState> {
   const { admin } = await managedQuiz(quizId);
-  const roleType = (["TEACHER", "WORKER", "HELPER", "DUMMY"] as const).find((r) => r === form.get("roleType"));
+  const group = String(form.get("group") ?? "");
+  const role = String(form.get("role") ?? "");
+  const test = String(form.get("test") ?? "");
   const where: Prisma.UserWhereInput = {
     ...userScope(admin),
     active: true,
-    ...(form.get("districtId") ? { districtId: String(form.get("districtId")) } : {}),
-    ...(form.get("blockId") ? { blockId: String(form.get("blockId")) } : {}),
-    ...(roleType ? { roleType } : {}),
+    ...(group ? { group } : {}),
+    ...(role ? { role } : {}),
+    ...(test === "only" ? { testAccount: true } : test === "hide" ? { testAccount: false } : {}),
   };
   const users = await db.user.findMany({ where, select: { id: true } });
   if (form.get("mode") === "remove") {

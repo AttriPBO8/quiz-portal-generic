@@ -1,4 +1,5 @@
-// Database design for the Online Quiz Portal.
+// Database design for the Quiz Portal.
+// Each customer (tenant) gets its own deployment and its own database. See docs/SAAS.md.
 // Change this file, then run `npm run db:migrate` to update the database.
 
 generator client {
@@ -17,39 +18,21 @@ enum AdminRole {
   LOCAL_ADMIN
 }
 
-enum RoleType {
-  TEACHER
-  WORKER
-  HELPER
-  DUMMY
-}
-
 enum Difficulty {
   EASY
   MEDIUM
   HARD
 }
 
+enum MediaKind {
+  IMAGE
+  AUDIO
+  VIDEO
+}
+
 enum AttemptStatus {
   IN_PROGRESS
   SUBMITTED
-}
-
-model District {
-  id     String  @id @default(cuid())
-  name   String  @unique
-  blocks Block[]
-  users  User[]
-}
-
-model Block {
-  id         String   @id @default(cuid())
-  name       String
-  districtId String
-  district   District @relation(fields: [districtId], references: [id])
-  users      User[]
-
-  @@unique([districtId, name])
 }
 
 /// Super Admins and Local Admins. They sign in on /admin/login with a username.
@@ -69,15 +52,21 @@ model Admin {
   managedQuizzes QuizManager[]
 }
 
-/// Quiz-takers (Teacher, Worker, Helper, Dummy).
-/// They sign in with District + Block + Role type + phone + password.
+/// Quiz-takers. Admins create them with an email address, a phone number, or both.
+/// They sign in with either one plus their password. Role and group are only for reports.
 model User {
   id                String    @id @default(cuid())
   name              String
-  phone             String
-  roleType          RoleType
-  districtId        String
-  blockId           String
+  /// Stored in lower case.
+  email             String?   @unique
+  /// Digits only, with the country code if the admin entered one.
+  phone             String?   @unique
+  /// Set by an admin, for example "Employee" or "Manager". Shown in reports, not used at sign-in.
+  role              String    @default("Learner")
+  /// Optional team, department or location, used to filter reports.
+  group             String    @default("")
+  /// Test accounts are left out of reports and question statistics unless asked for.
+  testAccount       Boolean   @default(false)
   localAdminId      String?
   /// bcrypt hash, used to check the password at login.
   passwordHash      String
@@ -88,14 +77,30 @@ model User {
   passwordChangedAt DateTime?
   createdAt         DateTime  @default(now())
 
-  district    District     @relation(fields: [districtId], references: [id])
-  block       Block        @relation(fields: [blockId], references: [id])
   localAdmin  Admin?       @relation(fields: [localAdminId], references: [id])
   assignments Assignment[]
   attempts    Attempt[]
 
-  @@unique([districtId, blockId, roleType, phone])
   @@index([localAdminId])
+  @@index([role])
+  @@index([group])
+}
+
+/// A picture, sound clip or short video that questions can show.
+/// The file itself is kept in S3 on AWS, or in the MEDIA_DIR folder on a laptop.
+model MediaFile {
+  id         String     @id @default(cuid())
+  /// File name, unique. Question files refer to media by this name.
+  name       String     @unique
+  kind       MediaKind
+  mimeType   String
+  size       Int
+  /// Read aloud by screen readers, and shown if the file cannot load.
+  altText    String     @default("")
+  storageKey String     @unique
+  uploadedBy String?
+  createdAt  DateTime   @default(now())
+  questions  Question[]
 }
 
 model QuestionBank {
@@ -118,11 +123,15 @@ model Question {
   difficulty   Difficulty
   category     String     @default("General")
   active       Boolean    @default(true)
+  /// Optional picture, sound or video shown with the question.
+  mediaId      String?
 
-  bank QuestionBank @relation(fields: [bankId], references: [id], onDelete: Cascade)
+  bank  QuestionBank @relation(fields: [bankId], references: [id], onDelete: Cascade)
+  media MediaFile?   @relation(fields: [mediaId], references: [id], onDelete: Restrict)
 
   @@unique([bankId, externalId])
   @@index([bankId, difficulty])
+  @@index([mediaId])
 }
 
 model Quiz {

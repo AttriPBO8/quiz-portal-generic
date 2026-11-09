@@ -2,7 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { quizScope, requireAdmin, userScope } from "@/lib/auth";
 import { db } from "@/lib/db";
-import { toLocalInput } from "@/lib/constants";
+import { GROUP_LABEL, toLocalInput } from "@/lib/constants";
 import { filterOptions, getResultRows, summarize } from "@/lib/reports";
 import { setQuizManagers } from "@/app/actions/admin-quizzes";
 import { AssignForm, EditQuizForm } from "../QuizForms";
@@ -55,7 +55,7 @@ export default async function QuizDetail({ params }: { params: Promise<{ quizId:
       <section className="card p-5">
         <h2 className="text-lg font-bold">Assign</h2>
         <p className="mb-4 text-sm text-muted">Pick who should get this quiz. {isSuper ? "" : "Only your own users are included."} New users added later need to be assigned too.</p>
-        <AssignForm quizId={quiz.id} districts={opts.districts} blocks={opts.blocks} />
+        <AssignForm quizId={quiz.id} groups={opts.groups} roles={opts.roles} groupLabel={GROUP_LABEL} />
       </section>
 
       {isSuper && (

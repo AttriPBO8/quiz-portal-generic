@@ -10,8 +10,8 @@ export function UploadUsers() {
     <details className="card p-4">
       <summary className="cursor-pointer font-semibold">Add or update users from a CSV file</summary>
       <p className="mt-2 text-sm text-muted">
-        Columns: <code>district, block, role_type, phone, name, local_admin, password</code>. The last two are optional.
-        New users without a password get the starting password. A user with the same district, block, role and phone is updated.{" "}
+        Columns: <code>name, email, phone, role, group, test_account, local_admin, password</code>. Each row needs an email, a phone number, or both;
+        the rest are optional. New users without a password get the starting password. A row whose email or phone already belongs to a user updates that user.{" "}
         <a className="text-primary underline" href="/admin/export/users-template">Download a template</a>.
       </p>
       <form action={action} className="mt-3 flex flex-wrap items-center gap-3">

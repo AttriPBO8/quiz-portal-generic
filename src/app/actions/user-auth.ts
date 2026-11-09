@@ -6,7 +6,7 @@ import { db } from "@/lib/db";
 import { requireUser } from "@/lib/auth";
 import { formatTime, LOGIN_LOCK_MINUTES, LOGIN_MAX_FAILURES } from "@/lib/constants";
 import { checkPasswordStrength, protectPassword, verifyPassword } from "@/lib/passwords";
-import { maskPhone } from "@/lib/log";
+import { parseLoginId, phoneCandidates, userLabel } from "@/lib/contact";
 import { securityEvent } from "@/lib/security";
 import { getQuizSite } from "@/lib/site";
 import { clearSession, createSession, readSession } from "@/lib/session";
@@ -14,14 +14,11 @@ import { clearSession, createSession, readSession } from "@/lib/session";
 export type FormState = { error?: string; ok?: string } | undefined;
 
 // A real bcrypt hash of a random string. Checking against it when no account matches keeps
-// the response time the same, so timing does not reveal which phone numbers exist.
+// the response time the same, so timing does not reveal which emails or phone numbers exist.
 const DUMMY_HASH = "$2b$10$IHuKHVv0G5npWUjC9TZsH.2xrvSJSnb.hgPC0xRi0OYeLlR3igphq";
 
 const loginSchema = z.object({
-  districtId: z.string().min(1, "Choose your district."),
-  blockId: z.string().min(1, "Choose your block."),
-  roleType: z.enum(["TEACHER", "WORKER", "HELPER", "DUMMY"], { message: "Choose your role." }),
-  phone: z.string().trim().regex(/^\d{10}$/, "Enter your 10-digit phone number."),
+  login: z.string().trim().min(1, "Enter your email address or phone number.").max(254),
   password: z.string().min(1, "Enter your password.").max(64),
 });
 
@@ -33,11 +30,20 @@ export async function loginUser(_: FormState, form: FormData): Promise<FormState
   }
   const parsed = loginSchema.safeParse(Object.fromEntries(form));
   if (!parsed.success) return { error: parsed.error.issues[0].message };
-  const { password, ...key } = parsed.data;
+  const { password } = parsed.data;
+  const key = parseLoginId(parsed.data.login);
+  if (!key) return { error: "Enter a valid email address, or a phone number using digits only." };
 
-  const user = await db.user.findUnique({ where: { districtId_blockId_roleType_phone: key } });
-  const generic = "These details don't match our records. Check each field and try again.";
-  const label = `${user?.name ?? "unknown"} (${maskPhone(key.phone)})`;
+  let user = null;
+  if ("email" in key) user = await db.user.findUnique({ where: key });
+  else {
+    // Exact number first, then the same number with or without the usual country code.
+    const tries = phoneCandidates(key.phone, process.env.DEFAULT_COUNTRY_CODE);
+    const found = await db.user.findMany({ where: { phone: { in: tries } } });
+    user = tries.map((t) => found.find((u) => u.phone === t)).find(Boolean) ?? null;
+  }
+  const generic = "That email or phone number and password don't match our records. Check them and try again.";
+  const label = userLabel({ name: user?.name, ...key });
   const event = (success: boolean, detail: string, type: "USER_LOGIN" | "ACCOUNT_LOCKED" = "USER_LOGIN") =>
     securityEvent({ type, success, portal: "quiz", account: user ? `user:${user.id}` : undefined, label, detail });
   if (!user || !user.active) {
@@ -79,7 +85,7 @@ export async function changeUserPassword(_: FormState, form: FormData): Promise<
   const next = String(form.get("next") ?? "");
   const confirm = String(form.get("confirm") ?? "");
   const event = (success: boolean, detail: string) =>
-    securityEvent({ type: "PASSWORD_CHANGE", success, portal: "quiz", account: `user:${user.id}`, label: `${user.name} (${maskPhone(user.phone)})`, detail });
+    securityEvent({ type: "PASSWORD_CHANGE", success, portal: "quiz", account: `user:${user.id}`, label: userLabel(user), detail });
   if (!(await verifyPassword(current, user.passwordHash))) {
     await event(false, "Current password was wrong");
     return { error: "Your current password is not right." };

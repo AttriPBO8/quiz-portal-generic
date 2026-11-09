@@ -19,6 +19,7 @@ export default async function ChangePassword() {
             : "Other devices will be signed out. "}
           Use at least 8 characters with letters and numbers.
         </p>
+        {!firstTime && <p className="mt-2 text-sm text-muted">If you sign in with Google or Facebook and never set a password, ask your admin to reset it first.</p>}
         <div className="card mt-6 p-5">
           <PasswordForm action={changeUserPassword} backHref={firstTime ? undefined : "/quizzes"} currentLabel={firstTime ? "Starting password" : undefined} />
         </div>
